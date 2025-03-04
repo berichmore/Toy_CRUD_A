@@ -1,2 +1,5 @@
 # Toy_CRUD_A
-VO,Mapper,xmlMapper
+
+우선 노션파일 커밋해보기.
+
+- 어떤과정으로 작동하는지 이해해보기
