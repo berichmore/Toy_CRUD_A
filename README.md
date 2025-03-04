@@ -24,7 +24,7 @@
 - 어떤 것들이 있는지 자세하게 해보기
 
 ## 코드 캡쳐 예시
-- [컨트롤러 코드 캡쳐](images/controller.png)
+- ![컨트롤러 코드 캡쳐](images/controller.png)
 - 
 
 
