@@ -25,6 +25,7 @@ public class BoardController {
 
     }
 
+    //리스트 조회
     @GetMapping("/list")
     public List<BoardVO> getBoardList(){
         return boardService.getBoardList();
