@@ -1,0 +1,58 @@
+package handsoft.crud.controller;
+
+
+import handsoft.crud.domain.BoardVO;
+import handsoft.crud.service.BoardService;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+//@CrossOrigin(origins = "http://example.com")
+@CrossOrigin(origins = "*")
+@RequestMapping("/board")
+public class BoardController {
+
+    private final BoardService boardService;
+
+    public BoardController(BoardService boardService) {
+        this.boardService = boardService;
+    }
+
+    @GetMapping("/hello")
+    public String getData(){
+        return "hello, cors";
+
+    }
+
+    //리스트 조회
+    @GetMapping("/list")
+    public List<BoardVO> getBoardList(){
+        return boardService.getBoardList();
+        // 넥사크로에서 JSON 파싱하거나, 웹에서 확인가능 -> 구글링
+    }
+
+    @GetMapping("/{id}")
+    public BoardVO getBoard(@PathVariable long id){
+        return boardService.getBoard(id);
+    }
+
+    @PostMapping
+    public String createBoard(@RequestBody BoardVO boardVO){
+        boardService.registerBoard(boardVO);
+        return "ok";
+    }
+    @PutMapping("/{id}")
+    public String updateBoard(@PathVariable("id") Long id, @RequestBody BoardVO board){
+        board.setId(id);
+        boardService.modifyBoard(board);
+        return "ok";
+    }
+
+    @DeleteMapping("/{id}")
+    public String deleteBoard(@PathVariable("id") Long id){
+        boardService.removeBoard(id);
+        return "ok";
+    }
+
+}

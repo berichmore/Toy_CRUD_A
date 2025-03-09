@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry excluding="handsoft/crud/config/" kind="src" path="crud/src/main/java"/>
+	<classpathentry kind="src" path="crud/src/main/java/handsoft/crud/config"/>
+	<classpathentry kind="src" path="crud/src/test/java"/>
+	<classpathentry kind="lib" path="crud/gradle/wrapper/gradle-wrapper.jar"/>
+	<classpathentry kind="output" path="crud/out/production/classes"/>
+</classpath>
