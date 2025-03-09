@@ -21,7 +21,7 @@
 
 | 기술                | 버전    |
 |---------------------|--------|
-| Spring Boot         | 3  |
+| Spring Boot         | 3.4.3  |
 | Spring Security     |  |
 |     |   |
 | JSON Web Token      |   |
