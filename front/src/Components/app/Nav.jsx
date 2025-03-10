@@ -18,7 +18,7 @@ const Nav = () => {
                             <a className="nav-link active" aria-current="page" href="#">Home</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">Link</a>
+                            <a className="nav-link" href="/ex">Ex</a>
                         </li>
                         <li className="nav-item dropdown">
                             <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -26,8 +26,8 @@ const Nav = () => {
                                 Link
                             </a>
                             <ul className="dropdown-menu">
-                                <li><a className="dropdown-item" href="#">Action</a></li>
-                                <li><a className="dropdown-item" href="#">Another action</a></li>
+                                <li><a className="dropdown-item" href="https://ko.legacy.reactjs.org/" target="_blank">리액트 학습</a></li>
+                                <li><a className="dropdown-item" href="#">리액트 배우기</a></li>
                                 <li>
                                     <hr className="dropdown-divider"/>
                                 </li>
