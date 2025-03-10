@@ -17,6 +17,9 @@
 
 
 ## 사용 기술
+
+## IDE
+ IntelliJ IDEA Ultimate
 ## :hammer_and_wrench: Backend
 
 | 기술                | 버전    |
