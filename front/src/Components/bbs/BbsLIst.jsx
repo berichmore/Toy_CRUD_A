@@ -1,6 +1,27 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import axios from "axios";
 
 const BbsLIst = () => {
+
+    const [bbsList, setBbsList] = useState([]);
+
+
+
+    const getBbsList = () =>{
+        axios.get("/bbs/list")
+            .then((response) => {
+                console.log(response.data);
+            })
+            .catch((error) => {}
+            )
+    }
+
+    useEffect(()=>{
+        getBbsList("","",1);
+    },[]);
+
+
+
     return (
         <div>
             <table>
