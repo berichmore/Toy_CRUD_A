@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Board.crud.bbs.mapper.BbsMapper">
+    <select id="selectBbsList" resultType="Board.crud.bbs.domain.BbsVO">
+        select
+            seq,
+            id,
+            ref,
+            step,
+            depth,
+            title,
+            content,
+            created_at AS createdAt,
+            del,
+            read_count AS readCount
+        from bbs
+        order by seq desc
+    </select>
+    <insert id="insertBbs" parameterType="Board.crud.bbs.domain.BbsVO">
+        insert into bbs(id, ref, setp,depth,title, content,created_at,del,read_count)
+        values (#{id},#{ref},#{step},#{depth},#{title},#{content},#{created_at},now(),#{del},#{readCount})
+    </insert>
+
+</mapper>
+<!--        selectBbsById-->
+<!--        insertBbs-->
+<!--        updateBbs-->
+<!--        deleteBbs-->

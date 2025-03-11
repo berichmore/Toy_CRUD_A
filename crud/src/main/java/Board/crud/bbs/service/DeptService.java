@@ -1,7 +1,7 @@
-package Board.crud.service;
+package Board.crud.bbs.service;
 
 
-import Board.crud.domain.DeptVO;
+import Board.crud.bbs.domain.DeptVO;
 
 import java.util.List;
 

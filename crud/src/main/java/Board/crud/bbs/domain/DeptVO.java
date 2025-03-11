@@ -1,4 +1,4 @@
-package Board.crud.domain;
+package Board.crud.bbs.domain;
 
 import lombok.Getter;
 import lombok.Setter;
