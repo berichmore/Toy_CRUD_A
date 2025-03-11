@@ -8,8 +8,8 @@ import java.util.List;
 public interface BbsService {
 
     List<BbsVO> getBbsList();
-    BbsVO getBbsById(int id);
+    BbsVO getBbsById(String id);
     void registerBbs(BbsVO bbsVO);
     void modifyBbs(BbsVO bbsVO);
-    void removeBbs(int id);
+    void removeBbs(int seq);
 }

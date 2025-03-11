@@ -19,13 +19,47 @@
         from bbs
         order by seq desc
     </select>
+
+    <select id="selectBbsById" resultType="Board.crud.bbs.domain.BbsVO">
+        select
+            seq,
+            id,
+            ref,
+            step,
+            depth,
+            title,
+            content,
+            created_at AS createdAt,
+            del,
+            read_count AS readCount
+        from bbs
+        where seq = #{seq}
+    </select>
     <insert id="insertBbs" parameterType="Board.crud.bbs.domain.BbsVO">
-        insert into bbs(id, ref, setp,depth,title, content,created_at,del,read_count)
-        values (#{id},#{ref},#{step},#{depth},#{title},#{content},#{created_at},now(),#{del},#{readCount})
+        insert into bbs(id, ref, step,depth,title, content,created_at,del,read_count)
+        values (#{id},#{ref},#{step},#{depth},#{title},#{content},now(),#{del},#{readCount})
     </insert>
 
+    <update id="updateBbs" parameterType="Board.crud.bbs.domain.BbsVO">
+        update bbs
+        set
+            id = #{id},
+            ref = #{ref},
+            step = #{step},
+            depth = #{depth},
+            title = #{title},
+            content = #{content},
+            del = #{del},
+            read_count = #{readCount}
+        where seq = #{seq}
+    </update>
+
+    <delete id="deleteBbs" parameterType="int">
+        delete from bbs
+        where seq = #{seq}
+    </delete>
 </mapper>
-<!--        selectBbsById-->
-<!--        insertBbs-->
-<!--        updateBbs-->
-<!--        deleteBbs-->
+        <!--        selectBbsById-->
+        <!--        insertBbs-->
+        <!--        updateBbs-->
+        <!--        deleteBbs-->

@@ -12,7 +12,7 @@ public interface BbsMapper {
     List<BbsVO> selectBbsList();
 
     //조회
-    BbsVO selectBbsById(int id);
+    BbsVO selectBbsById(String id);
 
     //등록
     void insertBbs(BbsVO bbsVO);
@@ -21,6 +21,6 @@ public interface BbsMapper {
     void updateBbs(BbsVO bbsVO);
 
     //삭제
-    void deleteBbs(int id);
+    void deleteBbs(int seq);
 
 }

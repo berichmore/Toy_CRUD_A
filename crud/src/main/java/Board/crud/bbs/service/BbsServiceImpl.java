@@ -11,33 +11,32 @@ public class BbsServiceImpl implements BbsService{
 
     private final BbsMapper bbsMapper;
 
-    //생성자 주입
     public BbsServiceImpl(BbsMapper bbsMapper) {
         this.bbsMapper = bbsMapper;
     }
 
     @Override
     public List<BbsVO> getBbsList() {
-        return List.of();
+        return bbsMapper.selectBbsList();
     }
 
     @Override
-    public BbsVO getBbsById(int id) {
-        return null;
+    public BbsVO getBbsById(String id) {
+        return bbsMapper.selectBbsById(id);
     }
 
     @Override
     public void registerBbs(BbsVO bbsVO) {
-
+        bbsMapper.insertBbs(bbsVO);
     }
 
     @Override
     public void modifyBbs(BbsVO bbsVO) {
-
+        bbsMapper.updateBbs(bbsVO);
     }
 
     @Override
-    public void removeBbs(int id) {
-
+    public void removeBbs(int seq) {
+        bbsMapper.deleteBbs(seq);
     }
 }
