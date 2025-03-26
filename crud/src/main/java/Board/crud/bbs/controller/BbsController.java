@@ -1,8 +1,8 @@
-package Board.crud.bbs.controller;
+package board.crud.bbs.controller;
 
-import Board.crud.bbs.domain.BbsVO;
-import Board.crud.bbs.service.BbsService;
-import Board.crud.bbs.service.BoardService;
+import board.crud.bbs.domain.BbsVO;
+import board.crud.bbs.service.BbsService;
+import board.crud.bbs.service.BoardService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

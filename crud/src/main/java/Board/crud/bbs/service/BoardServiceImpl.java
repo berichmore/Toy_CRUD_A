@@ -1,7 +1,7 @@
-package Board.crud.bbs.service;
+package board.crud.bbs.service;
 
-import Board.crud.bbs.domain.BoardVO;
-import Board.crud.bbs.mapper.BoardMapper;
+import board.crud.bbs.domain.BoardVO;
+import board.crud.bbs.mapper.BoardMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

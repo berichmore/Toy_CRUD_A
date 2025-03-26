@@ -1,7 +1,7 @@
-package Board.crud.bbs.controller;
+package board.crud.bbs.controller;
 
-import Board.crud.bbs.domain.DeptVO;
-import Board.crud.bbs.service.DeptService;
+import board.crud.bbs.domain.DeptVO;
+import board.crud.bbs.service.DeptService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

@@ -3,8 +3,10 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="Board.crud.bbs.mapper.BbsMapper">
-    <select id="selectBbsList" resultType="Board.crud.bbs.domain.BbsVO">
+<mapper namespace="board.crud.bbs.mapper.BbsMapper">
+
+
+    <select id="selectBbsList" resultType="board.crud.bbs.domain.BbsVO">
         select
             seq,
             id,
@@ -20,7 +22,10 @@
         order by seq desc
     </select>
 
-    <select id="selectBbsById" resultType="Board.crud.bbs.domain.BbsVO">
+
+
+
+    <select id="selectBbsById" resultType="board.crud.bbs.domain.BbsVO">
         select
             seq,
             id,
@@ -35,12 +40,14 @@
         from bbs
         where seq = #{seq}
     </select>
-    <insert id="insertBbs" parameterType="Board.crud.bbs.domain.BbsVO">
+    <insert id="insertBbs" parameterType="board.crud.bbs.domain.BbsVO">
         insert into bbs(id, ref, step,depth,title, content,created_at,del,read_count)
         values (#{id},#{ref},#{step},#{depth},#{title},#{content},now(),#{del},#{readCount})
     </insert>
 
-    <update id="updateBbs" parameterType="Board.crud.bbs.domain.BbsVO">
+
+
+    <update id="updateBbs" parameterType="board.crud.bbs.domain.BbsVO">
         update bbs
         set
             id = #{id},

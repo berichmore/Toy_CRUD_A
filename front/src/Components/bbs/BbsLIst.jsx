@@ -1,18 +1,25 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
+import {useNavigate} from "react-router-dom";
 
 const BbsLIst = () => {
 
     const [bbsList, setBbsList] = useState([]);
+    const navigate = useNavigate();
 
 
+    const goWrite =() =>{
+        //글쓰기 페이지로 이동
+        navigate("/bbswrite");
+    }
 
     const getBbsList = () =>{
         axios.get("/bbs/list")
-            .then((response) => {
+            .then((response)=> {
                 console.log(response.data);
+                setBbsList(response.data)
             })
-            .catch((error) => {}
+            .catch((error)=>{}
             )
     }
 
@@ -20,9 +27,11 @@ const BbsLIst = () => {
         getBbsList("","",1);
     },[]);
 
-    // ---2025-03-26
+
+
 
     return (
+        <>
         <div>
             <table>
                 <tbody>
@@ -54,11 +63,24 @@ const BbsLIst = () => {
                 </thead>
 
                 <tbody>
-                    ff
+                {
+                    bbsList.map((bbs, idx)=>(
+                        <tr key = {bbs.sequence}>
+                            <td>{idx + 1}</td>
+                            <td>{bbs.title}</td>
+                            <td>{bbs.id}</td>
+                        </tr>
+
+                    ))
+                }
                 </tbody>
             </table>
 
         </div>
+            <div className="d-flex justify-content-end">
+                <button onClick={goWrite} className="btn btn-info">글쓰기</button>
+            </div>
+        </>
     );
 };
 

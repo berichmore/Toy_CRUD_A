@@ -1,7 +1,7 @@
-package Board.crud.bbs.mapper;
+package board.crud.bbs.mapper;
 
 
-import Board.crud.bbs.domain.DeptVO;
+import board.crud.bbs.domain.DeptVO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

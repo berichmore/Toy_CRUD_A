@@ -1,6 +1,6 @@
-package Board.crud.bbs.mapper;
+package board.crud.bbs.mapper;
 
-import Board.crud.bbs.domain.BbsVO;
+import board.crud.bbs.domain.BbsVO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -11,7 +11,7 @@ public interface BbsMapper {
     //전체 조회
     List<BbsVO> selectBbsList();
 
-    //조회
+    //회원 조회
     BbsVO selectBbsById(String id);
 
     //등록
