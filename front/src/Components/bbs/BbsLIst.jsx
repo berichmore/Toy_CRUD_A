@@ -20,7 +20,7 @@ const BbsLIst = () => {
         getBbsList("","",1);
     },[]);
 
-
+    // ---2025-03-26
 
     return (
         <div>
