@@ -23,10 +23,19 @@ public class BbsController {
         return bbsService.getBbsList();
     }
 
+    
+    //id로 검색용
     @GetMapping("/{id}")
     public BbsVO getBbs(@PathVariable("id") String id){
         return bbsService.getBbsById(id);
     }
+    
+//    "seq로 조회할 수 있게 다시 새로짜기"
+    @GetMapping("/{seq}")
+    public BbsVO getBbsBySeq(@PathVariable("seq") int seq){
+        return null;
+    }
+    
     @PostMapping()
     public String createBbs(@RequestBody BbsVO bbsVO){
         bbsService.registerBbs(bbsVO);

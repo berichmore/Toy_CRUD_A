@@ -1,5 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
+import {useNavigate} from "react-router-dom";
+// import alert from "bootstrap/js/src/alert";
 
 
 const BbsWrite = () => {
@@ -11,6 +13,8 @@ const BbsWrite = () => {
     const [aid,setAid] = useState("");
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
+    const navigate = useNavigate();
+
 
     const changeTitle = (e) => {
         setTitle(e.target.value);
@@ -28,8 +32,8 @@ const BbsWrite = () => {
 
 
         const req = {
-            // id : localStorage.getItem("id"),
-            id : aid,
+            id : localStorage.getItem("id"),
+            // id : aid,
             title : title,
             content : content
         }
@@ -37,8 +41,20 @@ const BbsWrite = () => {
             .then((res)=>{
                 console.log(res.data);
 
+                // alert(res.data.message("안녕하세요 "));
+                alert("이런이런 부트스트랩");
+                // alert(res.data);
+                // alert(res.data.message);
+                navigate('/bbslist');
+
+
         })
-            .catch(err=> console.log(err));
+            // .catch(err=> console.log(err));
+
+        .catch((err)=>{
+            console.log("글 등록이 실패했습니다.")
+            alert("글 등록이 실패했습니다.");
+        })
 
     }
 
@@ -98,6 +114,8 @@ const BbsWrite = () => {
                         onClick={createBbs}
 
                 > 등록</button>
+
+
             </div>
 
         </div>

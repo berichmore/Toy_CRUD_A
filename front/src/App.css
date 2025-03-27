@@ -27,6 +27,9 @@
 .App-link {
   color: #61dafb;
 }
+.clickable{
+  cursor: pointer;
+}
 
 @keyframes App-logo-spin {
   from {

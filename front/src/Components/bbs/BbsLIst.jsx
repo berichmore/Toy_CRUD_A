@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 const BbsLIst = () => {
 
@@ -8,6 +8,9 @@ const BbsLIst = () => {
     const navigate = useNavigate();
 
 
+    const handleClick = () => {
+        navigate("/bbsdetails")
+    }
     const goWrite =() =>{
         //글쓰기 페이지로 이동
         navigate("/bbswrite");
@@ -33,7 +36,7 @@ const BbsLIst = () => {
     return (
         <>
         <div>
-            <table>
+            <table className="search">
                 <tbody>
                 <tr>
                     <td>
@@ -53,12 +56,12 @@ const BbsLIst = () => {
                 </tr>
                 </tbody>
             </table>
-            <table>
+            <table className="table table-hover">
                 <thead>
                    <tr>
                         <th className="col-1">번호</th>
-                        <th className="col-1">제목</th>
-                        <th className="col-1">작성자</th>
+                        <th className="col-8">제목</th>
+                        <th className="col-3">작성자</th>
                    </tr>
                 </thead>
 
@@ -67,11 +70,14 @@ const BbsLIst = () => {
                     bbsList.map((bbs, idx)=>(
                         <tr key = {bbs.sequence}>
                             <td>{idx + 1}</td>
-                            <td>{bbs.title}</td>
+                            {/*<td  className="clickable" onClick={()=> handleClick(bbs.seq)}>{bbs.title}</td>*/}
+                            <td><Link to={`/bbsdetail/${bbs.seq}`}>{bbs.title}</Link></td>
                             <td>{bbs.id}</td>
                         </tr>
-
                     ))
+
+
+
                 }
                 </tbody>
             </table>
@@ -83,5 +89,7 @@ const BbsLIst = () => {
         </>
     );
 };
+
+
 
 export default BbsLIst;
