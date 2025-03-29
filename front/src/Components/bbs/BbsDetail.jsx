@@ -38,7 +38,7 @@ const BbsDetail = () => {
         <div>
             <h1>글보기</h1>
             <table className="table table-striped">
-                <tbody className="justify-content-center">
+                <tbody >
                     <tr>
                         <th className="col-3">작성자</th>
                         <td>
@@ -74,9 +74,9 @@ const BbsDetail = () => {
 
                 </tbody>
             </table>
-            <di>
+            <div>
                 <Link className="btn btn-outline-secondary" to="/bbslist">글목록</Link>
-            </di>
+            </div>
 
 
 

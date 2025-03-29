@@ -1,0 +1,23 @@
+* {
+    white-space: pre-wrap;
+}
+
+textarea {
+    background-color: transparent;
+    resize: none;
+    outline: none;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+
+span.bbs-title {
+    color: #212529
+}
+
+.table-striped td{
+    text-align: left;
+    vertical-align: top;
+}
+
+
