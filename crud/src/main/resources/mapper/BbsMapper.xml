@@ -25,7 +25,27 @@
 
 
 
+<!--    id로 검색-->
+
     <select id="selectBbsById" resultType="board.crud.bbs.domain.BbsVO">
+        select
+            seq,
+            id,
+            ref,
+            step,
+            depth,
+            title,
+            content,
+            created_at AS createdAt,
+            del,
+            read_count AS readCount
+        from bbs
+        where id = #{id}
+    </select>
+
+
+<!--    // seq로 검색-->
+    <select id="selectBbsBySeq" resultType="board.crud.bbs.domain.BbsVO">
         select
             seq,
             id,
@@ -40,6 +60,7 @@
         from bbs
         where seq = #{seq}
     </select>
+
     <insert id="insertBbs" parameterType="board.crud.bbs.domain.BbsVO">
         insert into bbs(id, ref, step,depth,title, content,created_at,del,read_count)
         values (#{id},#{ref},#{step},#{depth},#{title},#{content},now(),#{del},#{readCount})

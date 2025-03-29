@@ -8,6 +8,7 @@ const BbsLIst = () => {
     const navigate = useNavigate();
 
 
+
     const handleClick = () => {
         navigate("/bbsdetails")
     }

@@ -31,11 +31,11 @@ public class BbsController {
     }
     
 //    "seq로 조회할 수 있게 다시 새로짜기"
-    @GetMapping("/{seq}")
+    @GetMapping("/seq/{seq}")
     public BbsVO getBbsBySeq(@PathVariable("seq") int seq){
-        return null;
+        return bbsService.getBbsBySeq(seq);
     }
-    
+
     @PostMapping()
     public String createBbs(@RequestBody BbsVO bbsVO){
         bbsService.registerBbs(bbsVO);

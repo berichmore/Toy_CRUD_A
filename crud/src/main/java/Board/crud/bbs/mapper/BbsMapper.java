@@ -14,6 +14,9 @@ public interface BbsMapper {
     //회원 조회
     BbsVO selectBbsById(String id);
 
+    //Read Page 조회
+    BbsVO selectBbsBySeq(int seq);
+
     //등록
     void insertBbs(BbsVO bbsVO);
 

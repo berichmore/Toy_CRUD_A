@@ -1,13 +1,36 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import axios from "axios";
+import {Link, useParams} from "react-router-dom";
 
 const BbsDetail = () => {
 
-    const getBbsDetails = () => {
+    const [bbs, setBbs] = useState({});
+    const {seq} = useParams();
 
-        axios.get(`/bbsdetail/`)
+    const getBbsDetail = async () => {
+
+        await axios.get(`/bbs/seq/${seq}`)
+            .then((res)=>{
+                console.log(res.data);
+
+                setBbs(res.data);
+            })
 
     }
+    // const getBbsList = () =>{
+    //     axios.get("/bbs/list")
+    //         .then((response)=> {
+    //             console.log(response.data);
+    //             setBbsList(response.data)
+    //         })
+    //         .catch((error)=>{}
+    //         )
+    // }
+
+    useEffect(()=>{
+        getBbsDetail();
+
+    },[]);
     
     
     return (
@@ -15,40 +38,45 @@ const BbsDetail = () => {
         <div>
             <h1>글보기</h1>
             <table className="table table-striped">
-                <tbody>
+                <tbody className="justify-content-center">
                     <tr>
                         <th className="col-3">작성자</th>
                         <td>
-                            {/*<span>{bbs.id}</span>*/}
+                            <span>{bbs.id}</span>
                         </td>
                     </tr>
                     <tr>
-                            <th className="col-3">제목</th>
+                            <th>제목</th>
                             <td>
-                                {/*<span>{bbs.id}</span>*/}
+                                <span>{bbs.title}</span>
                             </td>
                         </tr>
                     <tr>
-                            <th className="col-3">작성일</th>
+                            <th>작성일</th>
                             <td>
-                                {/*<span>{bbs.id}</span>*/}
+                                <span>{bbs.createdAt}</span>
                             </td>
                         </tr>
                     <tr>
-                            <th className="col-3">조회수</th>
+                            <th>조회수</th>
                             <td>
-                                {/*<span>{bbs.id}</span>*/}
+                                <span>{bbs.readCount}</span>
                             </td>
                         </tr>
                     <tr>
-                            <th className="col-3">내용</th>
+                            <th>내용</th>
                             <td>
-                                {/*<span>{bbs.id}</span>*/}
+                                <div>
+                                    {bbs.content}
+                                </div>
                             </td>
                         </tr>
 
                 </tbody>
             </table>
+            <di>
+                <Link className="btn btn-outline-secondary" to="/bbslist">글목록</Link>
+            </di>
 
 
 

@@ -26,6 +26,11 @@ public class BbsServiceImpl implements BbsService{
     }
 
     @Override
+    public BbsVO getBbsBySeq(int seq) {
+        return bbsMapper.selectBbsBySeq(seq);
+    }
+
+    @Override
     public void registerBbs(BbsVO bbsVO) {
         bbsMapper.insertBbs(bbsVO);
     }
