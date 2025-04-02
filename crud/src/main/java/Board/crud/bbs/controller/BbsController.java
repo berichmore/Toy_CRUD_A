@@ -52,4 +52,7 @@ public class BbsController {
         bbsService.removeBbs(seq);
         return "delete success";
     }
+
+
+    //로그인, 댓글 구현필요
 }
