@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/schema/mybatis-3-mapper.dtd">
+
+<mapper namespace="board.crud.bbs.mapper.MemberMapper">
+
+    <select id="selectMemberId" parameterType="string" resultType="board.crud.bbs.domain.MemberVO">
+        select id, pwd, name, email
+        from member
+        where id = #{id}
+
+    </select>
+<!--    회원 가입 등록  -->
+    <insert id="insertMember" parameterType="board.crud.bbs.domain.MemberVO">
+        insert into member(id, pwd, name, email)
+        values (#{id},#{pwd},#{name},#{email})
+
+    </insert>
+
+<!--    회원 정보 수정-->
+    <update id="updateMember" parameterType="board.crud.bbs.domain.MemberVO">
+        update member
+        set pwd = #{pwd},
+            name = #{name},
+            email = #{email}
+        where id = #{id}
+    </update>
+
+    <delete id="deleteMember" parameterType="string">
+        delete from member
+        where id = #{id}
+    </delete>
+
+<!--    //id로 조회 (로그인 겸용)-->
+<!--    MemberVO selectMemberId(String id);-->
+
+<!--    //회원 가입에서 등록-->
+<!--    void insertMember(MemberVO memberVO);-->
+
+<!--    //회원 정보 수정-->
+<!--    void updateMember(MemberVO memberVO);-->
+
+<!--    //회원 삭제-->
+<!--    void deleteMember(String id);-->
+
+</mapper>
