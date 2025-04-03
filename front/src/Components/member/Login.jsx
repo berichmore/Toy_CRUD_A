@@ -1,7 +1,11 @@
 import React, {useState} from 'react';
 import axios from "axios";
+import {useNavigate} from "react-router-dom";
 
 const Login = () => {
+
+    const navigate = useNavigate();
+    const { setLogin} = useState(null);
 
     const [id, setId] = useState("");
     const [pwd, setPwd] = useState("");
@@ -10,12 +14,17 @@ const Login = () => {
     const login = async () => {
 
         try{
-        const response = axios.post("/member/login",
+        const response = await axios.post("/member/login",
             {id, pwd
             }, {
             withCredentials: true
             });
         console.log("로그인 성공", response.data);
+        setLogin(response.data);
+        alert(response.data.name + "님, 로그인 되었습니다.");
+        navigate("/bbslist");
+
+
     } catch (error){
             console.error("로그인 실패", error.response.data);
             alert(error.response.data || "로그인 중 오류 발생");

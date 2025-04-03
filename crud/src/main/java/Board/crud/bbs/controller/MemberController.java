@@ -30,6 +30,13 @@ public class MemberController {
         }
     }
 
+    //로그아웃
+    @PostMapping("/logout")
+    public ResponseEntity<?> logout(HttpServletRequest request){
+        request.getSession().invalidate(); //세션 무효화
+        return ResponseEntity.ok("로그아웃 성공");
+    }
+
     //로그인 처리 : JSON요청, 응답
 
     @PostMapping("/login")

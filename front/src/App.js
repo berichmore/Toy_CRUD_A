@@ -7,6 +7,7 @@ import Main from "./Components/app/Main";
 import Footer from "./Components/app/Footer";
 import {useEffect, useState} from "react";
 import "./css/style.css"
+import LoginProvider from "./Components/context/LoginProvider";
 
 
 
@@ -15,12 +16,15 @@ function App() {
     <div className="App">
      <BrowserRouter>
 
-         <Header/>
 
+         <LoginProvider>
+         <Header/>
          <Nav/>
          <Main/>
 
+
          <Footer/>
+         </LoginProvider>
 
 
 
