@@ -1,11 +1,13 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
+import {LoginContext} from "../context/LoginProvider";
+
 
 const Login = () => {
 
     const navigate = useNavigate();
-    const { setLogin} = useState(null);
+    const { setLoginUser} = useContext(LoginContext);
 
     const [id, setId] = useState("");
     const [pwd, setPwd] = useState("");
@@ -18,9 +20,9 @@ const Login = () => {
             {id, pwd
             }, {
             withCredentials: true
-            });
+        });
         console.log("로그인 성공", response.data);
-        setLogin(response.data);
+        setLoginUser(response.data);
         alert(response.data.name + "님, 로그인 되었습니다.");
         navigate("/bbslist");
 
