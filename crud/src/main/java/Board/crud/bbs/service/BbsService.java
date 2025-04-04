@@ -20,6 +20,9 @@ public interface BbsService {
     //조회수 카운트
     void increaseReadCount(int seq);
 
+    //검색
+    List<BbsVO> searchBbs(String type, String keyword);
+
 
 
 

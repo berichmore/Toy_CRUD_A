@@ -103,6 +103,31 @@
 
     </update>
 
+<!--    검색 기능-->
+    <select id="searchBbs" resultType="board.crud.bbs.domain.BbsVO">
+        select
+            seq, id, ref, step, depth,title,content, created_at,
+            del, read_count AS readCount
+        from bbs
+        <where>
+            <choose>
+                <when test="type == 'title'">
+                    title like concat('%', #{keyword}, '%')
+                </when>
+                <when test="type == 'content'">
+                    content like concat('%', #{keyword}, '%')
+                </when>
+                <when test="type == 'id'">
+                    id like concat('%', #{keyword},'%')
+                </when>
+                <otherwise>
+                    1 = 1
+                </otherwise>
+            </choose>
+        </where>
+        order by seq desc
+
+    </select>
 </mapper>
         <!--        selectBbsById-->
         <!--        insertBbs-->

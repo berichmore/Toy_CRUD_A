@@ -2,6 +2,7 @@ package board.crud.bbs.mapper;
 
 import board.crud.bbs.domain.BbsVO;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -31,6 +32,11 @@ public interface BbsMapper {
 
     //ref
     void updateRef(int seq);
+
+    //Type 검색
+    List<BbsVO> searchBbs(@Param("type") String type, @Param("keyword") String keyword);
+
+
 
 
 }

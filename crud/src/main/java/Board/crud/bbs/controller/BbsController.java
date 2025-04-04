@@ -19,17 +19,34 @@ public class BbsController {
         this.bbsService = bbsService;
     }
 
-    //죄회수 증가
+    //조회수 증가
     @PutMapping("/hit/{seq}")
     public ResponseEntity<?> increaseReadCount(@PathVariable("seq") int seq){
         bbsService.increaseReadCount(seq);
         return ResponseEntity.ok().build();
     }
 
+
     @GetMapping("list")
     public List<BbsVO> getBbsLIst(){
         return bbsService.getBbsList();
     }
+
+    //검색
+//    @GetMapping("/search")
+//    public ResponseEntity<List<BbsVO>> searchBbs(String type, String keyword){
+//        List<BbsVO> result = bbsService.searchBbs(type, keyword);
+//        return ResponseEntity.ok(result);
+//    }
+    @GetMapping("/search")
+    public ResponseEntity<List<BbsVO>> searchBbs(
+            @RequestParam("type") String type,
+            @RequestParam("keyword") String keyword){
+        List<BbsVO> result = bbsService.searchBbs(type, keyword);
+        return ResponseEntity.ok(result);
+    }
+
+
 
     
     //id로 검색용

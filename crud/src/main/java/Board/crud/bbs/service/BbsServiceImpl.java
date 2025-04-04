@@ -57,5 +57,10 @@ public class BbsServiceImpl implements BbsService{
         bbsMapper.increaseReadCount(seq);
     }
 
+    @Override
+    public List<BbsVO> searchBbs(String type, String keyword) {
+        return bbsMapper.searchBbs(type, keyword);
+    }
+
 
 }

@@ -4,10 +4,33 @@ import {Link, useNavigate} from "react-router-dom";
 
 const BbsLIst = () => {
 
+
+
+    //글목록
     const [bbsList, setBbsList] = useState([]);
     const navigate = useNavigate();
 
+    //검색
+    const [searchType, setSearchType] = useState("title");
+    const [keyword, setKeyword] = useState("");
 
+
+
+
+    const handleSearch = async () => {
+        try {
+            const response = await axios.get('/bbs/search', {
+                params: {
+                    type: searchType,
+                    keyword: keyword
+                }
+            });
+            setBbsList(response.data);   //검색 결과 표시
+        }catch (error){
+            console.error("에러발생", error);
+        }
+
+    }
 
     const handleClick = () => {
         navigate("/bbsdetails")
@@ -41,22 +64,40 @@ const BbsLIst = () => {
                 <tbody>
                 <tr>
                     <td>
-                        <select className="custom-select">
+                        <select className="custom-select"
+                                value={searchType}
+                                onChange={(e)=>setSearchType(e.target.value)}
+
+                        >
                             <option>검색 옵션 선택</option>
-                            <option> 제목</option>
-                            <option> 내용</option>
-                            <option> 작성자</option>
+                            <option value="title"> 제목</option>
+                            <option value="content"> 내용</option>
+                            <option value="id"> 작성자</option>
                         </select>
                     </td>
+
                     <td>
-                        <input type="text" className="form-control" placeholder="검색어"/>
+                        <input type="text"
+                               className="form-control"
+                               placeholder="검색어"
+                               value={keyword}
+                               onChange={(e) => setKeyword(e.target.value)}
+                        />
                     </td>
                     <td>
-                        <button type="button" className="btn btn-outline-secondary">검색</button>
+                        <button type="button"
+                                className="btn btn-outline-secondary"
+                                onClick={handleSearch}
+                        >검색</button>
                     </td>
                 </tr>
                 </tbody>
             </table>
+
+            {/*검색버튼*/}
+            <div className="d-flex justify-content-end">
+                <button onClick={goWrite} className="btn btn-info">글쓰기</button>
+            </div>
             <table className="table table-hover">
                 <thead>
                    <tr>
@@ -84,9 +125,7 @@ const BbsLIst = () => {
             </table>
 
         </div>
-            <div className="d-flex justify-content-end">
-                <button onClick={goWrite} className="btn btn-info">글쓰기</button>
-            </div>
+
         </>
     );
 };

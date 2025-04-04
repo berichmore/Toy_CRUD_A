@@ -7,6 +7,18 @@ const BbsDetail = () => {
     const [bbs, setBbs] = useState({});
     const {seq} = useParams();
 
+
+
+    //조회수 증가
+    const increaseReadCount = async() => {
+        try {
+            await axios.put(`/bbs/hit/${seq}`);
+        }catch (error){
+            console.error("조회수 증가 실패", error)
+
+        }
+    }
+
     const getBbsDetail = async () => {
 
         await axios.get(`/bbs/seq/${seq}`)
@@ -28,7 +40,9 @@ const BbsDetail = () => {
     // }
 
     useEffect(()=>{
+        increaseReadCount();
         getBbsDetail();
+
 
     },[]);
     
