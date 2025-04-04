@@ -3,6 +3,7 @@ package board.crud.bbs.controller;
 import board.crud.bbs.domain.BbsVO;
 import board.crud.bbs.service.BbsService;
 import board.crud.bbs.service.BoardService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,6 +17,13 @@ public class BbsController {
 
     public BbsController(BbsService bbsService, BoardService boardService) {
         this.bbsService = bbsService;
+    }
+
+    //죄회수 증가
+    @PutMapping("/hit/{seq}")
+    public ResponseEntity<?> increaseReadCount(@PathVariable("seq") int seq){
+        bbsService.increaseReadCount(seq);
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping("list")
@@ -54,5 +62,5 @@ public class BbsController {
     }
 
 
-    //로그인, 댓글 구현필요
+
 }

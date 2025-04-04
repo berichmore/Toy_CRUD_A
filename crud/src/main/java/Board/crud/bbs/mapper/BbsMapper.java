@@ -26,4 +26,11 @@ public interface BbsMapper {
     //삭제
     void deleteBbs(int seq);
 
+    //조회수 카운트
+    void increaseReadCount(int seq);
+
+    //ref
+    void updateRef(int seq);
+
+
 }

@@ -66,6 +66,13 @@
         values (#{id},#{ref},#{step},#{depth},#{title},#{content},now(),#{del},#{readCount})
     </insert>
 
+<!--    ref-->
+    <update id="updateRef" parameterType="int">
+        update bbs
+        set ref = #{seq}
+        where seq = #{seq}
+    </update>
+
 
 
     <update id="updateBbs" parameterType="board.crud.bbs.domain.BbsVO">
@@ -86,6 +93,16 @@
         delete from bbs
         where seq = #{seq}
     </delete>
+
+
+<!--    게시물 조회 카운트-->
+    <update id="increaseReadCount" parameterType="int">
+        update bbs
+        set read_count = read_count + 1
+        where seq = #{seq}
+
+    </update>
+
 </mapper>
         <!--        selectBbsById-->
         <!--        insertBbs-->

@@ -33,6 +33,13 @@ public class BbsServiceImpl implements BbsService{
     @Override
     public void registerBbs(BbsVO bbsVO) {
         bbsMapper.insertBbs(bbsVO);
+        updateRef(bbsVO.getSeq());
+
+    }
+
+    @Override
+    public void updateRef(int seq) {
+        bbsMapper.updateRef(seq);
     }
 
     @Override
@@ -44,4 +51,11 @@ public class BbsServiceImpl implements BbsService{
     public void removeBbs(int seq) {
         bbsMapper.deleteBbs(seq);
     }
+
+    @Override
+    public void increaseReadCount(int seq) {
+        bbsMapper.increaseReadCount(seq);
+    }
+
+
 }

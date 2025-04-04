@@ -1,6 +1,7 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
+import {LoginContext} from "../context/LoginProvider";
 // import alert from "bootstrap/js/src/alert";
 
 
@@ -14,6 +15,8 @@ const BbsWrite = () => {
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
     const navigate = useNavigate();
+
+    const {loginUser} = useContext(LoginContext);
 
 
     const changeTitle = (e) => {
@@ -32,8 +35,8 @@ const BbsWrite = () => {
 
 
         const req = {
-            id : localStorage.getItem("id"),
-            // id : aid,
+            // id : localStorage.getItem("id"),
+            id : loginUser.id,
             title : title,
             content : content
         }
@@ -59,11 +62,14 @@ const BbsWrite = () => {
     }
 
     useEffect(() => {
-        localStorage.getItem("id");
+        if(!loginUser){
+            alert("로그인이 필요합니다.")
+            navigate("/login");
+        }
 
         // alert("로그인한 사용자만 게시글을 작성할 수 있습니다.");
 
-    },[]);
+    },[loginUser]);
 
 
     return (
@@ -78,12 +84,12 @@ const BbsWrite = () => {
                                 type="text"
                                 className="form-control"
                                 // value={localStorage.getItem("id")}
-                                value={aid}
-                                onChange={(e)=> setAid(e.target.value)}
+                                value={loginUser ? loginUser.id : ""}
+                                // onChange={(e)=> setAid(e.target.value)}
                                 // value={id}
 
                                 size="50px"
-                                // readOnly
+                                readOnly
                             />
                         </td>
                     </tr>
