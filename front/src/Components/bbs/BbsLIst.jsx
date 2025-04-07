@@ -69,6 +69,7 @@ const BbsLIst = () => {
                                 onChange={(e)=>setSearchType(e.target.value)}
 
                         >
+                            {/*검색버튼*/}
                             <option>검색 옵션 선택</option>
                             <option value="title"> 제목</option>
                             <option value="content"> 내용</option>
@@ -94,10 +95,18 @@ const BbsLIst = () => {
                 </tbody>
             </table>
 
-            {/*검색버튼*/}
-            <div className="d-flex justify-content-end">
+
+
+            {/*게시물 수 + 글쓰기 버튼*/}
+            <div className="d-flex justify-content-between align-items-center">
+                <div style={{marginLeft: '10px', fontWeight: 'bold'}}>
+                    게시물 수: {bbsList.length}
+                </div>
                 <button onClick={goWrite} className="btn btn-info">글쓰기</button>
             </div>
+
+
+
             <table className="table table-hover">
                 <thead>
                    <tr>
@@ -111,7 +120,7 @@ const BbsLIst = () => {
                 {
                     bbsList.map((bbs, idx)=>(
                         <tr key = {bbs.sequence}>
-                            <td>{idx + 1}</td>
+                            <td>{bbs.seq}</td>
                             {/*<td  className="clickable" onClick={()=> handleClick(bbs.seq)}>{bbs.title}</td>*/}
                             <td><Link to={`/bbsdetail/${bbs.seq}`}>{bbs.title}</Link></td>
                             <td>{bbs.id}</td>

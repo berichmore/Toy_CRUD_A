@@ -8,6 +8,7 @@ import Logout from "../member/Logout";
 import Join from "../member/Join";
 import BbsWrite from "../bbs/BbsWrite";
 import BbsDetail from "../bbs/BbsDetail";
+import BbsUpdate from "../bbs/BbsUpdate";
 
 const Router = () => {
     return (
@@ -16,6 +17,7 @@ const Router = () => {
          <Route path="/bbslist" element={<BbsLIst/>}></Route>
          <Route path="/bbswrite" element={<BbsWrite/>}></Route>
          <Route path="/bbsdetail/:seq" element={<BbsDetail/>}></Route>
+         <Route path="/bbsupdate/:seq" element={<BbsUpdate/>}></Route>
          <Route path="/ex" element={<Ex/>}></Route>
 
          <Route path="/login" element={<Login/>}></Route>

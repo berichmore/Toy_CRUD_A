@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import {Link, useParams} from "react-router-dom";
+import {getBbsDetail} from "../api/bbsApi";
+
 
 const BbsDetail = () => {
 
@@ -19,32 +21,36 @@ const BbsDetail = () => {
         }
     }
 
-    const getBbsDetail = async () => {
 
-        await axios.get(`/bbs/seq/${seq}`)
-            .then((res)=>{
-                console.log(res.data);
-
-                setBbs(res.data);
-            })
-
-    }
-    // const getBbsList = () =>{
-    //     axios.get("/bbs/list")
-    //         .then((response)=> {
-    //             console.log(response.data);
-    //             setBbsList(response.data)
+    // api 모듈화로 인한 삭제
+    // const getBbsDetail = async () => {
+    //
+    //     await axios.get(`/bbs/seq/${seq}`)
+    //         .then((res)=>{
+    //             console.log(res.data);
+    //
+    //             setBbs(res.data);
     //         })
-    //         .catch((error)=>{}
-    //         )
+
     // }
 
+
     useEffect(()=>{
-        increaseReadCount();
-        getBbsDetail();
+
+        const fetchData = async ()=> {
+        try {
+            await increaseReadCount();
+            const data = await getBbsDetail(seq);
+            setBbs(data);
 
 
-    },[]);
+        }catch (error){
+            console.error("게시글 상세 조회 실패", error)
+
+        }
+        }
+        fetchData();
+    },[seq]);
     
     
     return (
@@ -90,6 +96,7 @@ const BbsDetail = () => {
             </table>
             <div>
                 <Link className="btn btn-outline-secondary" to="/bbslist">글목록</Link>
+                <Link className="btn btn-outline-secondary" to={`/bbsupdate/${bbs.seq}`}>글수정</Link>
             </div>
 
 
