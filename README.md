@@ -9,6 +9,21 @@
 3단계	JWT 기반 인증, 스테이트리스 설계, 서버 2대 구성<br>
 4단계	Redis + DB 튜닝, 대용량 성능 개선 (조회 최적화, 인덱싱 등)<br>
 
+## 🔐 보안 설정 가이드
+
+이 프로젝트는 민감한 설정 정보를 Git에 포함하지 않고 관리합니다.
+
+### ✅ 숨긴 설정 파일
+- `src/main/resources/application.properties`
+- `src/main/resources/application-secret.properties`
+
+### ⚙️ 설정 방법
+1. `application.properties`에 아래와 같이 작성하세요.
+```properties
+spring.application.name=crud
+spring.config.import=optional:classpath:application-secret.properties
+
+
 
 ## 목차
 
