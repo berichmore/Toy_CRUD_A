@@ -35,3 +35,7 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### 보안 ###
+/src/main/resources/application.properties
+/src/main/resources/application-secret.properties
