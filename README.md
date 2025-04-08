@@ -19,7 +19,7 @@
 
 ## ⚙️ 설정 방법
 1. `application.properties`에 아래와 같이 작성하세요.
-```properties
+
 spring.application.name=crud
 spring.config.import=optional:classpath:application-secret.properties<br>
 
