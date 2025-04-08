@@ -2,7 +2,6 @@ package board.crud.bbs.controller;
 
 import board.crud.bbs.domain.BbsVO;
 import board.crud.bbs.service.BbsService;
-import board.crud.bbs.service.BoardService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +14,7 @@ public class BbsController {
 
     private final BbsService bbsService;
 
-    public BbsController(BbsService bbsService, BoardService boardService) {
+    public BbsController(BbsService bbsService) {
         this.bbsService = bbsService;
     }
 
@@ -66,14 +65,14 @@ public class BbsController {
         bbsService.registerBbs(bbsVO);
         return "Register success";
     }
-    @PutMapping("/{id}")
-    public String updateBbs(@PathVariable("id")String id, @RequestBody BbsVO bbsVo){
-        bbsVo.setId(id);
+    @PutMapping("/{seq}")
+    public String updateBbs(@PathVariable("seq")int seq, @RequestBody BbsVO bbsVo){
+        bbsVo.setSeq(seq);
         bbsService.modifyBbs(bbsVo);
         return "Update success";
     }
-    @DeleteMapping("/{id}")
-    public String deleteBbs(@PathVariable("id") int seq){
+    @DeleteMapping("/{seq}")
+    public String deleteBbs(@PathVariable("seq") int seq){
         bbsService.removeBbs(seq);
         return "delete success";
     }

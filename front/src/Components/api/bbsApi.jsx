@@ -29,3 +29,16 @@ export const putBbsDetail = async (seq, updateData) => {
     }
 
 }
+
+//게시글 삭제
+export const deleteBbs = async(seq) => {
+    try {
+        const res = await axios.delete(`/bbs/${seq}`);
+        console.log(`삭제된 데이터는  ${res.data}   입니다.`);  //현대적 방식 - 가독성 업
+        return res.data;
+
+    }catch (error){
+        console.error("글을 삭제할 수 없습니다.",error);
+        throw error;
+    }
+}

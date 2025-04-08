@@ -1,13 +1,15 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
-import {Link, useParams} from "react-router-dom";
-import {getBbsDetail} from "../api/bbsApi";
+import {Link, useLocation, useNavigate, useParams} from "react-router-dom";
+import {deleteBbs, getBbsDetail} from "../api/bbsApi";
 
 
 const BbsDetail = () => {
 
     const [bbs, setBbs] = useState({});
+    const location = useLocation();  //라우터 state를 받기 위함.
     const {seq} = useParams();
+    const navigate = useNavigate();
 
 
 
@@ -35,6 +37,7 @@ const BbsDetail = () => {
     // }
 
 
+    // 모듈화된 코드 구현
     useEffect(()=>{
 
         const fetchData = async ()=> {
@@ -50,7 +53,24 @@ const BbsDetail = () => {
         }
         }
         fetchData();
-    },[seq]);
+    },[seq, location.state?.updated]);  //수정 후 다시 실행
+
+    //글 삭제 핸들러
+
+    const handleDelete = async () => {
+        const confirmDelete = window.confirm("정말로 이 글을 삭제하시겠습니까?");
+        if(!confirmDelete) return;
+
+        try {
+            await deleteBbs(seq);
+            alert("삭제가 완료되었습니다.")
+            navigate("/bbslist"); //삭제 후 목록으로 이동
+        }catch (error){
+            alert("삭제가 실패하였습니다.");
+        }
+    };
+
+
     
     
     return (
@@ -97,6 +117,7 @@ const BbsDetail = () => {
             <div>
                 <Link className="btn btn-outline-secondary" to="/bbslist">글목록</Link>
                 <Link className="btn btn-outline-secondary" to={`/bbsupdate/${bbs.seq}`}>글수정</Link>
+                <Link className="btn btn-outline-secondary" onClick={handleDelete}>글삭제</Link>
             </div>
 
 

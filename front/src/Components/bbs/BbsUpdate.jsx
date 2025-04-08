@@ -40,7 +40,8 @@ const BbsUpdate = () => {
         try {
             await putBbsDetail(seq, form);
             alert("수정이 완료되었습니다.");
-            navigate(`/bbsdetail/${seq}`);
+            // navigate(`/bbsdetail/${seq}`);
+            navigate(`/bbsdetail/${seq}`, {state: {updated: true}});
         }catch (error){
             console.error("수정 실패")
             alert("수정 실패");
