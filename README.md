@@ -13,15 +13,15 @@
 
 이 프로젝트는 민감한 설정 정보를 Git에 포함하지 않고 관리합니다.
 
-### ✅ 숨긴 설정 파일
+## ✅ 숨긴 설정 파일
 - `src/main/resources/application.properties`
 - `src/main/resources/application-secret.properties`
 
-### ⚙️ 설정 방법
+## ⚙️ 설정 방법
 1. `application.properties`에 아래와 같이 작성하세요.
 ```properties
 spring.application.name=crud
-spring.config.import=optional:classpath:application-secret.properties
+spring.config.import=optional:classpath:application-secret.properties<br>
 
 
 
