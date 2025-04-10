@@ -43,6 +43,11 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.4'
 	implementation 'mysql:mysql-connector-java:8.0.33'  // MySQL DRIVER.
+
+	//Spring Security (BCrypt 위함)
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+
+
 }
 
 tasks.named('test') {
