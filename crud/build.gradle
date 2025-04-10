@@ -45,7 +45,10 @@ dependencies {
 	implementation 'mysql:mysql-connector-java:8.0.33'  // MySQL DRIVER.
 
 	//Spring Security (BCrypt 위함)
-	implementation 'org.springframework.boot:spring-boot-starter-security'
+//	implementation 'org.springframework.boot:spring-boot-starter-security'
+	// security 전체 말고 암호화만 쓸 거라면 ↓ 이것만 추가
+	implementation 'org.springframework.security:spring-security-crypto:6.2.2' // Boot 3.4.3 기준
+
 
 
 }
