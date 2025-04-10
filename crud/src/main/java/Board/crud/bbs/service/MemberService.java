@@ -11,7 +11,7 @@ public interface MemberService {
 //    @return 로그인 성공 시 MemberVO, 실패시  null
 
     MemberVO login(String id, String pwd);
-    void join(MemberVO memeber);
+    void join(MemberVO member);
 
 
 }

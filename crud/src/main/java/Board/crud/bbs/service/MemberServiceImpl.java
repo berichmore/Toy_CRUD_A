@@ -33,9 +33,11 @@ public class MemberServiceImpl implements MemberService {
         return null;
     }
 
-    //회원가입
+
+
+//    회원가입
     @Override
-    public void join(MemberVO memeber) {
+    public void join(MemberVO member) {
 
 
     }
