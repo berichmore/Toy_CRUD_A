@@ -60,7 +60,7 @@ spring.datasource.password=YOUR_DB_PASSWORD<br>
 | 기술                | 버전    |
 |---------------------|--------|
 | Spring Boot         | 3.4.3  |
-| Spring Security     | X 예정 |
+| Spring Security     | 6.2.2 |
 |  Lombok   | 적용  |
 | JSON Web Token      | X 예정 |
 | MyBatis             | 3.0.4  |
