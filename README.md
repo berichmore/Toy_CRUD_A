@@ -36,6 +36,8 @@ spring.datasource.username=YOUR_DB_USERNAME<br>
 spring.datasource.password=YOUR_DB_PASSWORD<br>
 예시는 application-secret-example.properties 파일을 참고하세요<br>
 
+-2025-04-10 git log에 이전 db정보남아있어서 db정보 자체변경
+
 
 
 ## 목차
