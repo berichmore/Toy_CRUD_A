@@ -124,6 +124,12 @@ spring.datasource.password=YOUR_DB_PASSWORD<br>
 
 ## 기능 실행화면
 
+### Session 로그인  
+1) gradle security crypto 주입
+ gradle security crypto사진첨부
+
+
+
 --
 
 
