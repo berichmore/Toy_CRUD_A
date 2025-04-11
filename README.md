@@ -6,7 +6,7 @@
 
 ## 단계별	목표 
 로그인 인허가 계획  
-1)session 도입 -> security없이 session 인허가   
+1)Session 도입 -> security없이 session 인허가   
 2)Session 도입 -> security 추가 후 인허가  
 3)JWT 도입 - > security없이 인허가  
 4)JWT 도입 -> security로 인허가  
