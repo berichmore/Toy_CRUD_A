@@ -5,14 +5,14 @@
 현재 1단계 완료한 상태이고 계획목표는 아래와 같습니다.<br>
 
 ## 단계별	목표 
-로그인 인허가 계획
-1)session 도입 -> security없이 session 인허가 
-2)Session 도입 -> security 추가 후 인허가
-3)JWT 도입 - > security없이 인허가
-4)JWT 도입 -> security로 인허가
+로그인 인허가 계획  
+1)session 도입 -> security없이 session 인허가   
+2)Session 도입 -> security 추가 후 인허가  
+3)JWT 도입 - > security없이 인허가  
+4)JWT 도입 -> security로 인허가  
 
-= 목적 =
-전반적인 이해가 하고싶음
+= 목적 =  
+전반적인 이해가 하고싶음  
 
 
 ### 2단계	(현재진행중)<br>
