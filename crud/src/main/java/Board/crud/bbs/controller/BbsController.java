@@ -1,7 +1,10 @@
 package board.crud.bbs.controller;
 
 import board.crud.bbs.domain.BbsVO;
+import board.crud.bbs.domain.MemberVO;
 import board.crud.bbs.service.BbsService;
+import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -71,11 +74,38 @@ public class BbsController {
         bbsService.modifyBbs(bbsVo);
         return "Update success";
     }
+
+    //잘못됐던 나의 코드
+//    @DeleteMapping("/{seq}")
+//    public String deleteBbs(@PathVariable("seq") int seq){
+//        bbsService.removeBbs(seq);
+//        return "delete success";
+//    }
+
     @DeleteMapping("/{seq}")
-    public String deleteBbs(@PathVariable("seq") int seq){
+    public ResponseEntity<?> deleteBbs(@PathVariable ("seq") int seq, HttpServletRequest request){
+        //1. 사용자 가져오기
+        MemberVO loginUser =(MemberVO) request.getSession().getAttribute("loginUser");
+        if (loginUser == null){
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("로그인이 필요합니다.");
+        }
+        //2. 게시글 조회
+        BbsVO bbs = bbsService.findBbsBySeq(seq);
+        if (bbs == null){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("게시글이 존재하지 않습니다.");
+        }
+        //3. 작성자와 로그인 사용자 비교
+        if (!loginUser.getId().equals(bbs.getId())){
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("삭제 권한이 없습니다.");
+        }
+
+        //4. 삭제 실행
         bbsService.removeBbs(seq);
-        return "delete success";
+        return ResponseEntity.ok("삭제 완료!");
+
     }
+
+
 
 
 

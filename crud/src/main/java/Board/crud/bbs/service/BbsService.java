@@ -23,6 +23,10 @@ public interface BbsService {
     //검색
     List<BbsVO> searchBbs(String type, String keyword);
 
+    //
+    BbsVO findBbsBySeq(int seq);
+
+
 
 
 

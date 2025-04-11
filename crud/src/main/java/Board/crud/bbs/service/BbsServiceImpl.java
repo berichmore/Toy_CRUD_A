@@ -25,6 +25,12 @@ public class BbsServiceImpl implements BbsService{
         return bbsMapper.selectBbsById(id);
     }
 
+    //회원찾기
+    public BbsVO findBbsBySeq(int seq) {
+        return bbsMapper.selectBbsBySeq(seq);
+    }
+
+
     @Override
     public BbsVO getBbsBySeq(int seq) {
         return bbsMapper.selectBbsBySeq(seq);
@@ -61,6 +67,7 @@ public class BbsServiceImpl implements BbsService{
     public List<BbsVO> searchBbs(String type, String keyword) {
         return bbsMapper.searchBbs(type, keyword);
     }
+
 
 
 }

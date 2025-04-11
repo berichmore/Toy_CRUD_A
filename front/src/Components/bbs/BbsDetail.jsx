@@ -1,7 +1,8 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import axios from "axios";
 import {Link, useLocation, useNavigate, useParams} from "react-router-dom";
 import {deleteBbs, getBbsDetail} from "../api/bbsApi";
+import {LoginContext} from "../context/LoginProvider";
 
 
 const BbsDetail = () => {
@@ -10,6 +11,10 @@ const BbsDetail = () => {
     const location = useLocation();  //라우터 state를 받기 위함.
     const {seq} = useParams();
     const navigate = useNavigate();
+
+    //세션 인허가
+    const {loginUser} = useContext(LoginContext);  //사용자 id, name 등 접근
+
 
 
 
@@ -116,8 +121,13 @@ const BbsDetail = () => {
             </table>
             <div>
                 <Link className="btn btn-outline-secondary" to="/bbslist">글목록</Link>
+
+                {loginUser && loginUser.id === bbs.id && (
+                    <>
                 <Link className="btn btn-outline-secondary" to={`/bbsupdate/${bbs.seq}`}>글수정</Link>
-                <Link className="btn btn-outline-secondary" onClick={handleDelete}>글삭제</Link>
+                <button className="btn btn-outline-secondary" onClick={handleDelete}>글삭제</button>
+                    </>
+            )}
             </div>
 
 

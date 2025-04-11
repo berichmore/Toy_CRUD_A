@@ -26,7 +26,8 @@ public class MemberController {
         if(loginUser != null ) {
             return ResponseEntity.ok(loginUser); //로그인된 사용자 정보 반환
         }else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("로그인되어 있지 않습니다.");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).
+                    body("로그인되어 있지 않습니다.");
         }
     }
 
@@ -55,6 +56,12 @@ public class MemberController {
         }
         }
 
+
+        @PostMapping("join")
+    public ResponseEntity<?> join(@RequestBody MemberVO member, HttpServletRequest request){
+        memberService.join(member);
+        return ResponseEntity.ok("회원가입 성공");
+        }
     }
 
 
