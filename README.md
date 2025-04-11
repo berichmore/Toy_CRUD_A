@@ -5,14 +5,29 @@
 현재 1단계 완료한 상태이고 계획목표는 아래와 같습니다.<br>
 
 ## 단계별	목표 
+로그인 인허가 계획  
+1)Session 도입 -> security없이 session 인허가   
+2)Session 도입 -> security 추가 후 인허가  
+3)JWT 도입 - > security없이 인허가  
+4)JWT 도입 -> security로 인허가  
+
+= 목적 =  
+전반적인 이해가 하고싶음  
+
+
 ### 2단계	(현재진행중)<br>
+
 세션 기반 로그인/로그아웃,회원가입, 세션 인증/인가 처리,<br>
 게시글 권한 체크, 회원가입, 댓글<br>
 온프레미스 방식(Docker 없이-> 후에 적용 (차이점 체득위함))<br>
 온프레미스(윈도우 노트북 -> 라즈베리파이 or 미니pc(N100 예상)로 이전(차이점, 유지비관리,성능향상 위함)<br>
+
 ### 3단계	<br>
+
 JWT 기반 인증, 스테이트리스 설계, 서버 2대 구성(jwt의 장점 체감위함)<br>
+
 ### 4단계	<br>
+
 Redis + DB 튜닝, 대용량 성능 개선 (조회 최적화, 인덱싱 등)<br>
 
 ## 🔐 보안 설정 가이드
@@ -35,23 +50,29 @@ spring.config.import=optional:classpath:application-secret.properties<br>
 spring.datasource.username=YOUR_DB_USERNAME<br>
 spring.datasource.password=YOUR_DB_PASSWORD<br>
 예시는 application-secret-example.properties 파일을 참고하세요<br>
+## 로그
+-2025-04-10 git log에 이전 db정보남아있어서 db정보 자체변경
 
 
 
 ## 목차
 
-
 - [프로젝트 구조](#프로젝트-구조)
 - [사용 기술](#사용-기술)
 - [구현 기능](#구현-기능)
+- [기능 실행 화면](#기능-실행-화면)
+- [코드 캡쳐 예시](#코드-캡쳐-예시)
+- [보안 설정 가이드](#보안-설정-가이드)
+- [기타 로그](#기타-로그)
 
 
-
-
+---
 ## 프로젝트 구조
 
+---
 
 ## 사용 기술
+
 
 ## IDE
  IntelliJ IDEA Ultimate
@@ -78,7 +99,7 @@ spring.datasource.password=YOUR_DB_PASSWORD<br>
 | react-axios        | 1.8.2   |
 | react-dom          | 19.0.0  |
 | react-js-pagination|  예정  |
-| react-dom       | 6.3.0   |
+|      |   |
 | react-router-dom   | 6.3.0   |
 | react-scripts      | 5.0.1   |
 - .........
@@ -96,7 +117,7 @@ spring.datasource.password=YOUR_DB_PASSWORD<br>
 - 게시글 검색 (제목, 내용, 작성자)
 - 게시글 조회수 증가 기능
 
-  > API 호출은 모듈화 사용
+  > API 요청은 모듈화 사용
   > 수정/ 삭제 시 상태(State)를 활용하여 페이지 갱신 처리
   ---
   
@@ -107,9 +128,42 @@ spring.datasource.password=YOUR_DB_PASSWORD<br>
 
 ## 기능 실행화면
 
+### Session 로그인  
+1) gradle security crypto 주입
+ gradle security crypto사진첨부
+
+
+
 --
 
 
 ## 코드 캡쳐 예시
+
+## 보안 설정 가이드  
+이 프로젝트는 민감한 설정 파일을 Git에 포함하지 않습니다.  
+
+📁 숨긴 설정 파일  
+src/main/resources/application.properties  
+
+src/main/resources/application-secret.properties  
+
+⚙️ 설정 방법  
+application.properties에 아래 설정 추가:  
+
+properties  
+
+spring.application.name=crud  
+spring.config.import=optional:classpath:application-secret.properties  
+application-secret.properties를 따로 생성하여 다음과 같이 작성:  
+
+properties  
+
+spring.datasource.username=YOUR_DB_USERNAME  
+spring.datasource.password=YOUR_DB_PASSWORD  
+예시는 application-secret-example.properties 파일을 참고하세요.  
+
+## 기타 로그
+
+
 
 
