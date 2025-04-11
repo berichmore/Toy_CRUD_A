@@ -139,23 +139,22 @@ spring.datasource.password=YOUR_DB_PASSWORD<br>
 
 ## 코드 캡쳐 예시
 
-## 보안 설정 가이드
-이 프로젝트는 민감한 설정 파일을 Git에 포함하지 않습니다.
+## 보안 설정 가이드  
+이 프로젝트는 민감한 설정 파일을 Git에 포함하지 않습니다.  
 
-📁 숨긴 설정 파일
-src/main/resources/application.properties
+📁 숨긴 설정 파일  
+src/main/resources/application.properties  
 
-src/main/resources/application-secret.properties
+src/main/resources/application-secret.properties  
 
-⚙️ 설정 방법
-application.properties에 아래 설정 추가:
+⚙️ 설정 방법  
+application.properties에 아래 설정 추가:  
 
-properties
-복사
-편집
-spring.application.name=crud
-spring.config.import=optional:classpath:application-secret.properties
-application-secret.properties를 따로 생성하여 다음과 같이 작성:
+properties  
+
+spring.application.name=crud  
+spring.config.import=optional:classpath:application-secret.properties  
+application-secret.properties를 따로 생성하여 다음과 같이 작성:  
 
 properties
 복사
