@@ -57,18 +57,22 @@ spring.datasource.password=YOUR_DB_PASSWORD<br>
 
 ## 목차
 
-
 - [프로젝트 구조](#프로젝트-구조)
 - [사용 기술](#사용-기술)
 - [구현 기능](#구현-기능)
+- [기능 실행 화면](#기능-실행-화면)
+- [코드 캡쳐 예시](#코드-캡쳐-예시)
+- [보안 설정 가이드](#보안-설정-가이드)
+- [기타 로그](#기타-로그)
 
 
-
-
+---
 ## 프로젝트 구조
 
+---
 
 ## 사용 기술
+
 
 ## IDE
  IntelliJ IDEA Ultimate
@@ -113,7 +117,7 @@ spring.datasource.password=YOUR_DB_PASSWORD<br>
 - 게시글 검색 (제목, 내용, 작성자)
 - 게시글 조회수 증가 기능
 
-  > API 호출은 모듈화 사용
+  > API 요청은 모듈화 사용
   > 수정/ 삭제 시 상태(State)를 활용하여 페이지 갱신 처리
   ---
   
@@ -134,5 +138,11 @@ spring.datasource.password=YOUR_DB_PASSWORD<br>
 
 
 ## 코드 캡쳐 예시
+
+## 보안 설정 가이드
+
+## 기타 로그
+
+
 
 
