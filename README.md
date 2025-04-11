@@ -156,12 +156,11 @@ spring.application.name=crud
 spring.config.import=optional:classpath:application-secret.properties  
 application-secret.properties를 따로 생성하여 다음과 같이 작성:  
 
-properties
-복사
-편집
-spring.datasource.username=YOUR_DB_USERNAME
-spring.datasource.password=YOUR_DB_PASSWORD
-예시는 application-secret-example.properties 파일을 참고하세요.
+properties  
+
+spring.datasource.username=YOUR_DB_USERNAME  
+spring.datasource.password=YOUR_DB_PASSWORD  
+예시는 application-secret-example.properties 파일을 참고하세요.  
 
 ## 기타 로그
 
