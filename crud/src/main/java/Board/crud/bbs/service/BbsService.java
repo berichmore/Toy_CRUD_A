@@ -1,30 +1,32 @@
 package board.crud.bbs.service;
 
 
-import board.crud.bbs.domain.BbsVO;
+import board.crud.bbs.domain.Bbs;
 
 import java.util.List;
 
 public interface BbsService {
 
-    List<BbsVO> getBbsList();
-    BbsVO getBbsById(String id);
-    BbsVO getBbsBySeq(int seq);
-    void registerBbs(BbsVO bbsVO);
+    List<Bbs> getBbsList();
+    Bbs getBbsById(String id);
+    Bbs getBbsBySeq(int seq);
+    void registerBbs(Bbs bbs);
     //ref
     void updateRef(int seq);
 
-    void modifyBbs(BbsVO bbsVO);
+    void modifyBbs(Bbs bbs);
     void removeBbs(int seq);
     
     //조회수 카운트
     void increaseReadCount(int seq);
 
     //검색
-    List<BbsVO> searchBbs(String type, String keyword);
+    List<Bbs> searchBbs(String type, String keyword);
 
     //
-    BbsVO findBbsBySeq(int seq);
+    Bbs findBbsBySeq(int seq);
+
+
 
 
 

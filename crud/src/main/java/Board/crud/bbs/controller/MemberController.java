@@ -1,6 +1,6 @@
 package board.crud.bbs.controller;
 
-import board.crud.bbs.domain.MemberVO;
+import board.crud.bbs.domain.Member;
 import board.crud.bbs.service.MemberService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
@@ -22,7 +22,7 @@ public class MemberController {
     //세션 로그인 유지 확인
     @GetMapping("/me")
     public ResponseEntity<?> getLoginMember(HttpServletRequest request){
-        MemberVO loginUser = (MemberVO) request.getSession().getAttribute("loginUser");
+        Member loginUser = (Member) request.getSession().getAttribute("loginUser");
         if(loginUser != null ) {
             return ResponseEntity.ok(loginUser); //로그인된 사용자 정보 반환
         }else {
@@ -41,11 +41,11 @@ public class MemberController {
     //로그인 처리 : JSON요청, 응답
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody MemberVO loginRequest, HttpServletRequest request){
+    public ResponseEntity<?> login(@RequestBody Member loginRequest, HttpServletRequest request){
         String id = loginRequest.getId();
         String pwd = loginRequest.getPwd();
 
-        MemberVO member = memberService.login(id, pwd);
+        Member member = memberService.login(id, pwd);
         if(member != null){
             //로그인 성공 시 세션에 회원정보저장
             request.getSession().setAttribute("loginUser", member);
@@ -57,8 +57,17 @@ public class MemberController {
         }
 
 
+//        중복 id 확인
+        @GetMapping("/check")
+        public ResponseEntity<?> checkIdDuplicate(@RequestParam("id") String id){
+            boolean exists = memberService.existsById(id);
+            return ResponseEntity.ok(exists);  //true : 이미 있음 / false : 사용 가능.
+        }
+//
+
+        //회원가입
         @PostMapping("join")
-    public ResponseEntity<?> join(@RequestBody MemberVO member, HttpServletRequest request){
+    public ResponseEntity<?> join(@RequestBody Member member, HttpServletRequest request){
         memberService.join(member);
         return ResponseEntity.ok("회원가입 성공");
         }

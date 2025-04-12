@@ -1,7 +1,6 @@
 package board.crud.bbs.service;
 
-import board.crud.bbs.domain.BbsVO;
-import board.crud.bbs.domain.MemberVO;
+import board.crud.bbs.domain.Member;
 import board.crud.bbs.mapper.BbsMapper;
 import board.crud.bbs.mapper.MemberMapper;
 import board.crud.bbs.service.encrypt.PasswordEncryptor;
@@ -29,9 +28,9 @@ public class MemberServiceImpl implements MemberService {
 
     //로그인
     @Override
-    public MemberVO login(String id, String pwd) {
+    public Member login(String id, String pwd) {
         //먼저 아이디를 통해 회원 정보를 조회
-        MemberVO member = memberMapper.selectMemberId(id);
+        Member member = memberMapper.selectMemberById(id);
         // 실제로는 암호화가 필요하지만 일단 단순비교로 만들어보기
 
         //기존 평문로직
@@ -51,8 +50,15 @@ public class MemberServiceImpl implements MemberService {
 
 //    회원가입
     @Override
-    public void join(MemberVO member) {
+    public void join(Member member) {
         memberJoinService.join(member);   //내부 위임
+    }
+
+
+
+    @Override
+    public boolean existsById(String id) {
+        return memberMapper.selectMemberById(id) != null;
     }
 
 }

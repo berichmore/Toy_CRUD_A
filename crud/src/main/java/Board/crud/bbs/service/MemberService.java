@@ -1,7 +1,7 @@
 package board.crud.bbs.service;
 
 
-import board.crud.bbs.domain.MemberVO;
+import board.crud.bbs.domain.Member;
 
 public interface MemberService {
 
@@ -10,8 +10,9 @@ public interface MemberService {
 //    @param pwd 사용자 비밀번호
 //    @return 로그인 성공 시 MemberVO, 실패시  null
 
-    MemberVO login(String id, String pwd);
-    void join(MemberVO member);
+    Member login(String id, String pwd);
+    void join(Member member);
+    boolean existsById(String id);
 
 
 }

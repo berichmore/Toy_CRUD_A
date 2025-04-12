@@ -6,7 +6,7 @@
 <mapper namespace="board.crud.bbs.mapper.BbsMapper">
 
 
-    <select id="selectBbsList" resultType="board.crud.bbs.domain.BbsVO">
+    <select id="selectBbsList" resultType="board.crud.bbs.domain.Bbs">
         select
             seq,
             id,
@@ -27,7 +27,7 @@
 
 <!--    id로 검색-->
 
-    <select id="selectBbsById" resultType="board.crud.bbs.domain.BbsVO">
+    <select id="selectBbsById" resultType="board.crud.bbs.domain.Bbs">
         select
             seq,
             id,
@@ -45,7 +45,7 @@
 
 
 <!--    // seq로 검색-->
-    <select id="selectBbsBySeq" resultType="board.crud.bbs.domain.BbsVO">
+    <select id="selectBbsBySeq" resultType="board.crud.bbs.domain.Bbs">
         select
             seq,
             id,
@@ -61,7 +61,7 @@
         where seq = #{seq}
     </select>
 
-    <insert id="insertBbs" parameterType="board.crud.bbs.domain.BbsVO">
+    <insert id="insertBbs" parameterType="board.crud.bbs.domain.Bbs">
         insert into bbs(id, ref, step,depth,title, content,created_at,del,read_count)
         values (#{id},#{ref},#{step},#{depth},#{title},#{content},now(),#{del},#{readCount})
     </insert>
@@ -75,7 +75,7 @@
 
 
 
-    <update id="updateBbs" parameterType="board.crud.bbs.domain.BbsVO">
+    <update id="updateBbs" parameterType="board.crud.bbs.domain.Bbs">
         update bbs
         set
             id = #{id},
@@ -104,7 +104,7 @@
     </update>
 
 <!--    검색 기능-->
-    <select id="searchBbs" resultType="board.crud.bbs.domain.BbsVO">
+    <select id="searchBbs" resultType="board.crud.bbs.domain.Bbs">
         select
             seq, id, ref, step, depth,title,content, created_at,
             del, read_count AS readCount

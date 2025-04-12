@@ -1,9 +1,10 @@
 package board.crud.bbs.controller;
 
-import board.crud.bbs.domain.BbsVO;
-import board.crud.bbs.domain.MemberVO;
+import board.crud.bbs.domain.Bbs;
+import board.crud.bbs.domain.Member;
 import board.crud.bbs.service.BbsService;
 import jakarta.servlet.http.HttpServletRequest;
+import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -30,50 +31,67 @@ public class BbsController {
 
 
     @GetMapping("list")
-    public List<BbsVO> getBbsLIst(){
+    public List<Bbs> getBbsLIst(){
         return bbsService.getBbsList();
     }
 
-    //검색
-//    @GetMapping("/search")
-//    public ResponseEntity<List<BbsVO>> searchBbs(String type, String keyword){
-//        List<BbsVO> result = bbsService.searchBbs(type, keyword);
-//        return ResponseEntity.ok(result);
-//    }
+
     @GetMapping("/search")
-    public ResponseEntity<List<BbsVO>> searchBbs(
+    public ResponseEntity<List<Bbs>> searchBbs(
             @RequestParam("type") String type,
             @RequestParam("keyword") String keyword){
-        List<BbsVO> result = bbsService.searchBbs(type, keyword);
+        List<Bbs> result = bbsService.searchBbs(type, keyword);
         return ResponseEntity.ok(result);
     }
-
 
 
     
     //id로 검색용
     @GetMapping("/{id}")
-    public BbsVO getBbs(@PathVariable("id") String id){
+    public Bbs getBbs(@PathVariable("id") String id){
         return bbsService.getBbsById(id);
     }
     
 //    "seq로 조회할 수 있게 다시 새로짜기"
     @GetMapping("/seq/{seq}")
-    public BbsVO getBbsBySeq(@PathVariable("seq") int seq){
+    public Bbs getBbsBySeq(@PathVariable("seq") int seq){
         return bbsService.getBbsBySeq(seq);
     }
 
     @PostMapping()
-    public String createBbs(@RequestBody BbsVO bbsVO){
-        bbsService.registerBbs(bbsVO);
+    public String createBbs(@RequestBody Bbs bbs){
+        bbsService.registerBbs(bbs);
         return "Register success";
     }
-    @PutMapping("/{seq}")
-    public String updateBbs(@PathVariable("seq")int seq, @RequestBody BbsVO bbsVo){
-        bbsVo.setSeq(seq);
-        bbsService.modifyBbs(bbsVo);
-        return "Update success";
+
+    //인가 로직
+    @PutMapping("{seq}")
+    public ResponseEntity<?> updateBbs(@PathVariable("seq")int seq,
+                                       @RequestBody Bbs updateRequest,
+                                       HttpServletRequest request){
+        //1.로그인 정보 가져오기 (인증)
+        Member loginUser = (Member) request.getSession().getAttribute("loginUser");
+        if(loginUser == null){
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("로그인이 필요합니다.");
+        }
+        // 2. 게시글 리소스 조회
+        Bbs bbs = bbsService.findBbsBySeq(seq);
+        if(bbs == null){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("게시글이 존재하지 않습니다.");
+        }
+        // 3. 권한 검증 실패(인가)
+        if(!loginUser.getId().equals(bbs.getId())){
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("수정 권한이 없습니다.");
+        }
+        // 4. 권한 검증 완료 -> 수정 성공
+        updateRequest.setSeq(seq);
+        bbsService.modifyBbs(updateRequest);
+
+        return ResponseEntity.ok("수정 완료");
+
     }
+
+
 
     //잘못됐던 나의 코드
 //    @DeleteMapping("/{seq}")
@@ -85,12 +103,13 @@ public class BbsController {
     @DeleteMapping("/{seq}")
     public ResponseEntity<?> deleteBbs(@PathVariable ("seq") int seq, HttpServletRequest request){
         //1. 사용자 가져오기
-        MemberVO loginUser =(MemberVO) request.getSession().getAttribute("loginUser");
+
+        Member loginUser =(Member) request.getSession().getAttribute("loginUser");
         if (loginUser == null){
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("로그인이 필요합니다.");
         }
         //2. 게시글 조회
-        BbsVO bbs = bbsService.findBbsBySeq(seq);
+        Bbs bbs = bbsService.findBbsBySeq(seq);
         if (bbs == null){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("게시글이 존재하지 않습니다.");
         }

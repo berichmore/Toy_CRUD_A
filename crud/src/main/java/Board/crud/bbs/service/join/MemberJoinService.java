@@ -1,6 +1,6 @@
 package board.crud.bbs.service.join;
 
-import board.crud.bbs.domain.MemberVO;
+import board.crud.bbs.domain.Member;
 import board.crud.bbs.mapper.MemberMapper;
 import board.crud.bbs.service.encrypt.PasswordEncryptor;
 import org.springframework.stereotype.Service;
@@ -15,7 +15,7 @@ public class MemberJoinService {
         this.passwordEncryptor = passwordEncryptor;
     }
 
-    public void join(MemberVO member){
+    public void join(Member member){
         String rawPwd = member.getPwd();
         String hashedPwd = passwordEncryptor.encode(rawPwd);
         member.setPwd(hashedPwd);

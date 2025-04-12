@@ -1,6 +1,6 @@
 package board.crud.bbs.service;
 
-import board.crud.bbs.domain.BbsVO;
+import board.crud.bbs.domain.Bbs;
 import board.crud.bbs.mapper.BbsMapper;
 import org.springframework.stereotype.Service;
 
@@ -16,30 +16,30 @@ public class BbsServiceImpl implements BbsService{
     }
 
     @Override
-    public List<BbsVO> getBbsList() {
+    public List<Bbs> getBbsList() {
         return bbsMapper.selectBbsList();
     }
 
     @Override
-    public BbsVO getBbsById(String id) {
+    public Bbs getBbsById(String id) {
         return bbsMapper.selectBbsById(id);
     }
 
     //회원찾기
-    public BbsVO findBbsBySeq(int seq) {
+    public Bbs findBbsBySeq(int seq) {
         return bbsMapper.selectBbsBySeq(seq);
     }
 
 
     @Override
-    public BbsVO getBbsBySeq(int seq) {
+    public Bbs getBbsBySeq(int seq) {
         return bbsMapper.selectBbsBySeq(seq);
     }
 
     @Override
-    public void registerBbs(BbsVO bbsVO) {
-        bbsMapper.insertBbs(bbsVO);
-        updateRef(bbsVO.getSeq());
+    public void registerBbs(Bbs bbs) {
+        bbsMapper.insertBbs(bbs);
+        updateRef(bbs.getSeq());
 
     }
 
@@ -49,8 +49,8 @@ public class BbsServiceImpl implements BbsService{
     }
 
     @Override
-    public void modifyBbs(BbsVO bbsVO) {
-        bbsMapper.updateBbs(bbsVO);
+    public void modifyBbs(Bbs bbs) {
+        bbsMapper.updateBbs(bbs);
     }
 
     @Override
@@ -64,7 +64,7 @@ public class BbsServiceImpl implements BbsService{
     }
 
     @Override
-    public List<BbsVO> searchBbs(String type, String keyword) {
+    public List<Bbs> searchBbs(String type, String keyword) {
         return bbsMapper.searchBbs(type, keyword);
     }
 

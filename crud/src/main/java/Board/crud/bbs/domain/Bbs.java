@@ -8,7 +8,7 @@ import java.sql.Timestamp;
 
 @Getter
 @Setter
-public class BbsVO {
+public class Bbs {
 
     private int seq;
     private String id;
