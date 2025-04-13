@@ -58,6 +58,7 @@ public class BbsController {
         return bbsService.getBbsBySeq(seq);
     }
 
+
     @PostMapping()
     public String createBbs(@RequestBody Bbs bbs){
         bbsService.registerBbs(bbs);

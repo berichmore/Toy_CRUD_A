@@ -8,6 +8,7 @@ const BbsUpdate = () => {
     const {seq} = useParams();
     const navigate = useNavigate();
     const [form, setForm] = useState({
+        id: '',
         title: '',
         content: ''
     });
@@ -22,6 +23,7 @@ const BbsUpdate = () => {
             try {
                 const data = await getBbsDetail(seq);
                 setForm({
+                    id: data.id,
                     title: data.title,
                     content: data.content
 
