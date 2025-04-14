@@ -9,7 +9,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -30,9 +32,20 @@ public class BbsController {
     }
 
 
+    //게시물 + 페이지네이션
     @GetMapping("list")
-    public List<Bbs> getBbsLIst(){
-        return bbsService.getBbsList();
+    public ResponseEntity<Map<String, Object>> getBbsLIst(
+            @RequestParam(name = "page", defaultValue = "1") int page,
+            @RequestParam(name = "size",defaultValue = "10") int size
+        ){
+      List<Bbs> list = bbsService.getBbsList(page, size);
+      int totalCount = bbsService.getTotalCount();
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("bbsList", list);
+        response.put("totalCount", totalCount);
+
+        return ResponseEntity.ok(response);
     }
 
 

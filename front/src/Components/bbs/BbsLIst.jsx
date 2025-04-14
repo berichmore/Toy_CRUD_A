@@ -2,8 +2,14 @@ import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import {Link, useNavigate} from "react-router-dom";
 
+// response.data.totalCount = undefined;
 const BbsLIst = () => {
 
+    //페이지네이션
+    const [page, setPage] = useState(10);
+    const [size, setSize] = useState(1);
+    const [totalCount, setTotalCount] = useState(0); //총 게시물 수
+    const totalPages = Math.ceil(totalCount / size);
 
 
     //글목록
@@ -13,6 +19,7 @@ const BbsLIst = () => {
     //검색
     const [searchType, setSearchType] = useState("title");
     const [keyword, setKeyword] = useState("");
+
 
 
 
@@ -41,18 +48,26 @@ const BbsLIst = () => {
     }
 
     const getBbsList = () =>{
-        axios.get("/bbs/list")
+        axios.get("/bbs/list", {
+            params: {
+                page: page,
+                size: size
+            }
+        })
+
             .then((response)=> {
                 console.log(response.data);
-                setBbsList(response.data)
+                setBbsList(response.data.bbsList);
+                setTotalCount(response.data.totalCount);
             })
             .catch((error)=>{}
             )
     }
 
     useEffect(()=>{
-        getBbsList("","",1);
-    },[]);
+        // getBbsList("","",1);
+        getBbsList("","",5);
+    },[page]);
 
 
 

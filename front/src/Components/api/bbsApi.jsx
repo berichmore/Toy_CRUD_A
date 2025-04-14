@@ -42,3 +42,13 @@ export const deleteBbs = async(seq) => {
         throw error;
     }
 }
+
+// //페이지네이션
+// export const getBbsListPagination = async (page = 1, size = 10) =>{
+//     try {
+//         const res = await axios.get("/bbs/list")
+//     }catch (error){
+//         console.error("게시글 목록 조회 실패", error);
+//         throw error;
+//     }
+// }

@@ -35,6 +35,14 @@ public interface BbsMapper {
 
     //Type 검색
     List<Bbs> searchBbs(@Param("type") String type, @Param("keyword") String keyword);
+    
+    //전체 게시글 수
+    int selectBbsCount();
+
+    //페이지네이션
+    List<Bbs> selectBbsListPaging(@Param("offset") int offset, @Param("size")int size);
+
+
 
 
 

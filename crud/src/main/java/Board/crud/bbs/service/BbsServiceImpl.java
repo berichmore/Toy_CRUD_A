@@ -2,9 +2,12 @@ package board.crud.bbs.service;
 
 import board.crud.bbs.domain.Bbs;
 import board.crud.bbs.mapper.BbsMapper;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class BbsServiceImpl implements BbsService{
@@ -16,8 +19,11 @@ public class BbsServiceImpl implements BbsService{
     }
 
     @Override
-    public List<Bbs> getBbsList() {
-        return bbsMapper.selectBbsList();
+    public List<Bbs> getBbsList(int size, int page) {
+        //페이지가 1부터 들어온다고 가정할 때,
+        int offset = (page - 1) * size;
+        //mybatis mapper 호출
+        return bbsMapper.selectBbsListPaging(offset, size);
     }
 
     @Override
@@ -28,6 +34,11 @@ public class BbsServiceImpl implements BbsService{
     //회원찾기
     public Bbs findBbsBySeq(int seq) {
         return bbsMapper.selectBbsBySeq(seq);
+    }
+
+    @Override
+    public int getTotalCount() {
+        return bbsMapper.selectBbsCount();
     }
 
 

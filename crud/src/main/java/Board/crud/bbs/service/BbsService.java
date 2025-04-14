@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface BbsService {
 
-    List<Bbs> getBbsList();
+
     Bbs getBbsById(String id);
     Bbs getBbsBySeq(int seq);
     void registerBbs(Bbs bbs);
@@ -26,10 +26,10 @@ public interface BbsService {
     //
     Bbs findBbsBySeq(int seq);
 
+    //
+    int getTotalCount();
 
-
-
-
+    List<Bbs> getBbsList(int size, int page);
 
 
     // seq를 통해 다시

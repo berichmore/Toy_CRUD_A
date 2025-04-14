@@ -5,6 +5,26 @@
 
 <mapper namespace="board.crud.bbs.mapper.BbsMapper">
 
+<!--    게시물 수 -->
+    <select id="selectBbsCount" resultType="int">
+        select count(*) from bbs
+    </select>
+
+    <select id="selectBbsListPaging" resultType="board.crud.bbs.domain.Bbs">
+        select seq,
+               id,
+               ref,
+               depth,
+               title,
+               content,
+               created_at AS createdAt,
+               del,
+               read_count AS readCount
+        from bbs
+        order by seq desc
+        limit #{offset}, #{size}
+
+    </select>
 
     <select id="selectBbsList" resultType="board.crud.bbs.domain.Bbs">
         select
