@@ -34,16 +34,19 @@ public class BbsController {
 
     //게시물 + 페이지네이션
     @GetMapping("list")
-    public ResponseEntity<Map<String, Object>> getBbsLIst(
+    public ResponseEntity<Map<String, Object>> getBbsList(
             @RequestParam(name = "page", defaultValue = "1") int page,
             @RequestParam(name = "size",defaultValue = "10") int size
         ){
-      List<Bbs> list = bbsService.getBbsList(page, size);
+      List<Bbs> list = bbsService.getBbsList(size, page);
       int totalCount = bbsService.getTotalCount();
+//      int startPage = bbsService.
 
         Map<String, Object> response = new HashMap<>();
         response.put("bbsList", list);
         response.put("totalCount", totalCount);
+//        response.put("startPage", startPage);
+//        response.put("endPage", endPage);
 
         return ResponseEntity.ok(response);
     }
@@ -72,10 +75,23 @@ public class BbsController {
     }
 
 
+
+    //인증인가 추가 글쓴이도 인허가 받아야 함
     @PostMapping()
-    public String createBbs(@RequestBody Bbs bbs){
+    public ResponseEntity<?> createBbs(@RequestBody Bbs bbs, HttpServletRequest request){
+        //1) 로그인 사용자 확인(인증)
+        Member loginUser = (Member) request.getSession().getAttribute("loginUser");
+        if(loginUser == null){
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("로그인이 필요합니다.");
+        }
+        //2) 작성자 설정 (인가 로직 예시)
+        // -bbs.setId(LoginUser.getId());로 ID를 셋팅해주면,
+        // 실제 DB에는 로그인한 유저의 ID가 게시글 작성자로 들어가게 됨
+        bbs.setId(loginUser.getId());
+        //3)게시글 저장
         bbsService.registerBbs(bbs);
-        return "Register success";
+        return ResponseEntity.ok("게시글 등록 완료");
+
     }
 
     //인가 로직
