@@ -3,6 +3,8 @@ import axios from "axios";
 import {Link, useLocation, useNavigate, useParams} from "react-router-dom";
 import {deleteBbs, getBbsDetail} from "../api/bbsApi";
 import {LoginContext} from "../context/LoginProvider";
+import CommentList from "../comment/CommentList";
+import CommentWrite from "../comment/CommentWrite";
 
 
 const BbsDetail = () => {
@@ -11,6 +13,10 @@ const BbsDetail = () => {
     const location = useLocation();  //라우터 state를 받기 위함.
     const {seq} = useParams();
     const navigate = useNavigate();
+
+    //댓글 get
+    const [reload, setReload] = useState(false);
+    const handleCommentAdded = () => setReload(prev => !prev);
 
     //세션 인허가
     const {loginUser} = useContext(LoginContext);  //사용자 id, name 등 접근
@@ -128,7 +134,20 @@ const BbsDetail = () => {
                 <button className="btn btn-outline-secondary" onClick={handleDelete}>글삭제</button>
                     </>
             )}
+
+                <CommentList bbsSeq={seq} reloadTrigger={reload}/>
+                {/*댓글 작성 컴포넌트*/}
+                {/*{*/}
+
+                    <CommentWrite seq={seq} onCommentAdded={handleCommentAdded}/>
+                {/*//     :*/}
+                {/*//*/}
+                {/*// null*/}
+                {/*}*/}
+                {/*댓글 리스트 컴포넌트*/}
+
             </div>
+
 
 
 

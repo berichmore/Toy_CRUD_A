@@ -43,6 +43,11 @@ export const deleteBbs = async(seq) => {
     }
 }
 
+
+
+
+
+
 // //페이지네이션
 // export const getBbsListPagination = async (page = 1, size = 10) =>{
 //     try {
