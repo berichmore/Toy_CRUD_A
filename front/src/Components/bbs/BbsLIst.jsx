@@ -128,7 +128,7 @@ const BbsLIst = () => {
                 {/*게시물 수 + 글쓰기 버튼*/}
                 <div className="d-flex justify-content-between align-items-center">
                     <div style={{marginLeft: '10px', fontWeight: 'bold'}}>
-                        게시물 수: {bbsList.length}
+                        전체 게시물 수: {totalCount}
                     </div>
                     <button onClick={goWrite} className="btn btn-info">글쓰기</button>
                 </div>

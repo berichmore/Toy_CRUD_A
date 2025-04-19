@@ -8,7 +8,7 @@ const Nav = () => {
 
     return (
         <nav className="navbar navbar-expand-lg bg-body-tertiary">
-            <div className="container-fluid">
+            <div className="container">
 
                 {/*게시판*/}
                 <a className="navbar-brand" href="/bbslist">게시판 </a>
