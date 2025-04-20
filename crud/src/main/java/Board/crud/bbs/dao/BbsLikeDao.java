@@ -1,14 +1,12 @@
 package board.crud.bbs.dao;
 
+import board.crud.bbs.dto.param.BbsLikeParam;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 
 @Mapper
 public interface BbsLikeDao {
-
-    boolean BbsLikeExists(@Param("id") String id, @Param("bbsSeq") int bbsSeq);
-
-    void BbsLikeInsert(@Param("id")String id, @Param("bbsSeq") int bbsSeq);
-
-    void BbsLikeDelete(@Param("id")String id, @Param("bbsSeq") int bbsSeq);
+    boolean exists(BbsLikeParam param);
+    void BbsLikeInsert(BbsLikeParam insertparam);
+    void BbsLikeDelete(BbsLikeParam deleteparam);
+    int getLikeCount(int set);
 }

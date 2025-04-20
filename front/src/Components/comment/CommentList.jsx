@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {getCommentsByBbsSeq} from "../api/CommentApi";
+import {getCommentsByBbsSeq} from "../api/commentApi";
 
 const CommentList = ({bbsSeq, reloadTrigger}) => {
     const [comments, setComments] = useState([]);

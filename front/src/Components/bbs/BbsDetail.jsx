@@ -5,6 +5,8 @@ import {deleteBbs, getBbsDetail} from "../api/bbsApi";
 import {LoginContext} from "../context/LoginProvider";
 import CommentList from "../comment/CommentList";
 import CommentWrite from "../comment/CommentWrite";
+import {AiFillHeart, AiOutlineHeart} from "react-icons/ai";
+import {getLikeCount, toggleLike} from "../api/likeApi";
 
 
 const BbsDetail = () => {
@@ -18,8 +20,14 @@ const BbsDetail = () => {
     const [reload, setReload] = useState(false);
     const handleCommentAdded = () => setReload(prev => !prev);
 
+    //좋아요 수, 좋아요 상태
+    const [likeCount, setLikeCount] = useState(0);
+    const [liked, setLiked] = useState(false); //추후 서버에서 상태 받아올 경우 사용 가능
+
     //세션 인허가
     const {loginUser} = useContext(LoginContext);  //사용자 id, name 등 접근
+
+
 
 
 
@@ -35,6 +43,8 @@ const BbsDetail = () => {
     }
 
 
+
+
     // api 모듈화로 인한 삭제
     // const getBbsDetail = async () => {
     //
@@ -48,7 +58,7 @@ const BbsDetail = () => {
     // }
 
 
-    // 모듈화된 코드 구현
+    // 모듈화된 코드 구현 / 글 데이터 + 좋아요 수
     useEffect(()=>{
 
         const fetchData = async ()=> {
@@ -57,7 +67,8 @@ const BbsDetail = () => {
             const data = await getBbsDetail(seq);
             setBbs(data);
 
-
+            const like = await getLikeCount(seq);
+            setLikeCount(like);
         }catch (error){
             console.error("게시글 상세 조회 실패", error)
 
@@ -80,6 +91,20 @@ const BbsDetail = () => {
             alert("삭제가 실패하였습니다.");
         }
     };
+    //좋아요 토글
+    const handleLike = async () => {
+        if(!loginUser){
+            alert("좋아요는 로그인이 필요합니다");
+            return;
+
+    }try{
+        const res = await toggleLike(seq);
+        setLiked(res.liked);
+        setLikeCount(res.likeCount);
+    }catch (error){
+            alert("좋아요 실패");
+        }
+    }
 
 
     
@@ -125,6 +150,17 @@ const BbsDetail = () => {
 
                 </tbody>
             </table>
+            <div className="mb-4 text-align-center">
+                <button
+                    className={`btn btn-${liked ? "danger" : "outline-secondary"} d-flex align-items-center`}
+                    onClick={handleLike}
+                    disabled={!loginUser}
+                >
+                    {/*아이콘 표시*/}
+                    {liked ? <AiFillHeart size={20} className="me-1"/> : <AiOutlineHeart size={20} className="me-1" />}
+                    {likeCount}
+                </button>
+            </div>
             <div>
                 <Link className="btn btn-outline-secondary" to="/bbslist">글목록</Link>
 

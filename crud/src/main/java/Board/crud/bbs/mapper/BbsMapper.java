@@ -43,6 +43,13 @@ public interface BbsMapper {
     List<Bbs> selectBbsListPaging(@Param("offset") int offset, @Param("size")int size);
 
 
+    //글 좋아요
+    void increaseLikeCount(int bbsSeq);
+    void decreaseLikeCount(int bbsSeq);
+    void updateLikeCount(int bbsSeq);
+    int getLikeCount(int bbsSeq);
+
+
 
 
 

@@ -20,5 +20,7 @@ public class Bbs {
     private Timestamp createdAt;
     private int del;
     private int readCount;
+    private int likeCount;
+
 
 }

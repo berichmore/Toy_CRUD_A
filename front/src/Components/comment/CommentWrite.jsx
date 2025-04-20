@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {postComment} from "../api/CommentApi";
+import {postComment} from "../api/commentApi";
 
 const CommentWrite = ({seq, onCommentAdded}) => {
     const [content, setContent] = useState("");
@@ -26,7 +26,7 @@ const CommentWrite = ({seq, onCommentAdded}) => {
             />
             <button className="btn btn-primary" onClick={createComment}>
                 댓글 등록
-            </button>f
+            </button>
         </div>
     );
 };

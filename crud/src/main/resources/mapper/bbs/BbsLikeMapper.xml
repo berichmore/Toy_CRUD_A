@@ -2,22 +2,33 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="board.crud.bbs.dao.BbsLikeDao">
-    <select id="BbsLikeExists" resultType="boolean">
+
+<!--    누가 눌렀는지 확인-->
+    <select id="exists" parameterType="board.crud.bbs.dto.param.BbsLikeParam" resultType="boolean">
         select count(*) > 0
         from bbs_like
         where id = #{id} and bbs_seq = #{bbsSeq}
     </select>
-    <insert id="BbsLikeInsert">
-        insert into bbs_like(id, bbs_seq)
-        values(#{id}, #{bbsSeq});
+    <insert id="BbsLikeInsert" parameterType="board.crud.bbs.dto.param.BbsLikeParam">
+        insert into bbs_like (id, bbs_seq)
+        values (#{id}, #{bbsSeq})
+
     </insert>
-    
-    <delete id="BbsLikeDelete">
+    <delete id="BbsLikeDelete" parameterType="board.crud.bbs.dto.param.BbsLikeParam">
         delete from bbs_like
-        where id = #{id} and bbs_seq = #{bbsSeq};
+        where id = #{id} and bbs_seq = #{bbsSeq}
     </delete>
-    
-    
+
+<!--    단순히 몇개의 좋아요가 있는지 확인-->
+    <select id="getLikeCount" parameterType="int" resultType="int">
+        select count(*)
+        from bbs_like
+        where bbs_seq = #{seq}
+    </select>
+
 </mapper>
 
+<!--        BbsLikeDelete-->
+<!--        BbsLikeInsert-->

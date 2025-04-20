@@ -19,7 +19,9 @@
                content,
                created_at AS createdAt,
                del,
-               read_count AS readCount
+               read_count AS readCount,
+               like_count AS likeCount
+
         from bbs
         order by seq desc
         limit #{offset}, #{size}
@@ -37,7 +39,8 @@
             content,
             created_at AS createdAt,
             del,
-            read_count AS readCount
+            read_count AS readCount,
+            like_count AS likeCount
         from bbs
         order by seq desc
     </select>
@@ -148,7 +151,50 @@
         order by seq desc
 
     </select>
+
+    <update id="decreaseLIkeCount" parameterType="int">
+        update bbs
+        set like_count = like_count - 1
+        where seq = #{bbsSeq}
+    </update>
+
+    <update id="increaseLikeCount" parameterType="int">
+    update bbs
+    set like_count = like_count +1
+    where seq = #{bbsSeq}
+    </update>
 </mapper>
+
+<!--<select id="BbsLikeExists" resultType="boolean">-->
+<!--select count(*) > 0-->
+<!--from bbs_like-->
+<!--where id = #{id} and bbs_seq = #{bbsSeq}-->
+<!--</select>-->
+<!--<insert id="BbsLikeInsert">-->
+<!--insert into bbs_like(id, bbs_seq)-->
+<!--values(#{id}, #{bbsSeq});-->
+<!--</insert>-->
+
+<!--<delete id="BbsLikeDelete">-->
+<!--delete from bbs_like-->
+<!--where id = #{id} and bbs_seq = #{bbsSeq};-->
+<!--</delete>-->
+
+<!--<update id="increaseLikeCount" parameterType="int">-->
+<!--update bbs-->
+<!--set like_count = like_count +1-->
+<!--where seq = #{bbsSeq}-->
+<!--</update>-->
+
+<!--<update id="decreaseLikeCount" parameterType="int">-->
+<!--update bbs-->
+<!--set like_count = like_count -1-->
+<!--where seq = #{bbsSeq}-->
+<!--</update>-->
+
+
+
+
         <!--        selectBbsById-->
         <!--        insertBbs-->
         <!--        updateBbs-->

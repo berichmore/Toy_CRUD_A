@@ -139,6 +139,7 @@ const BbsLIst = () => {
                     <tr>
                         <th className="col-1">번호</th>
                         <th className="col-8">제목</th>
+                        <th className="col-2">❤️ 좋아요</th>
                         <th className="col-3">작성자</th>
                     </tr>
                     </thead>
@@ -150,6 +151,7 @@ const BbsLIst = () => {
                                 <td>{bbs.seq}</td>
                                 {/*<td  className="clickable" onClick={()=> handleClick(bbs.seq)}>{bbs.title}</td>*/}
                                 <td><Link to={`/bbsdetail/${bbs.seq}`}>{bbs.title}</Link></td>
+                                <td>{bbs.likeCount}</td>
                                 <td>{bbs.id}</td>
                             </tr>
                         ))
@@ -181,8 +183,6 @@ const BbsLIst = () => {
                     </ul>
                 </nav>
                 </div>
-
-
             </div>
 
         </>
