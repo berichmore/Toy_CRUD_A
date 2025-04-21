@@ -163,6 +163,13 @@
     set like_count = like_count +1
     where seq = #{bbsSeq}
     </update>
+
+    <update id="decreaseLikeCount" parameterType="int">
+    update bbs
+    set like_count = like_count -1
+    where seq = #{bbsSeq}
+    </update>
+
 </mapper>
 
 <!--<select id="BbsLikeExists" resultType="boolean">-->

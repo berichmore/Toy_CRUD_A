@@ -47,7 +47,8 @@ public interface BbsMapper {
     void increaseLikeCount(int bbsSeq);
     void decreaseLikeCount(int bbsSeq);
     void updateLikeCount(int bbsSeq);
-    int getLikeCount(int bbsSeq);
+
+
 
 
 

@@ -8,5 +8,5 @@ public interface BbsLikeDao {
     boolean exists(BbsLikeParam param);
     void BbsLikeInsert(BbsLikeParam insertparam);
     void BbsLikeDelete(BbsLikeParam deleteparam);
-    int getLikeCount(int set);
+    int getLikeCount(int bbsSeq);
 }

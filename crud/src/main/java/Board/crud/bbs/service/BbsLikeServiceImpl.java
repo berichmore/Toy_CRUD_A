@@ -37,7 +37,7 @@ public class BbsLikeServiceImpl implements BbsLikeService {
             bbsMapper.increaseLikeCount(request.getBbsSeq());
         }
 
-        int likeCount = bbsMapper.getLikeCount(request.getBbsSeq());
+        int likeCount = bbsLikeDao.getLikeCount(request.getBbsSeq());
         return new LikeStatusResponse(!aleadyLiked, likeCount);
     }
 }
