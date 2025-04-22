@@ -1,10 +1,13 @@
 package board.crud.bbs.dto.request;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
-@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class ToggleLikeRequest {
     private int bbsSeq; //게시글 번호
 

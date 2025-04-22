@@ -1,6 +1,6 @@
 package board.crud.comment.controller;
 
-import board.crud.bbs.domain.Member;
+import board.crud.member.domain.Member;
 import board.crud.comment.dto.request.CreateCommentRequest;
 import board.crud.comment.dto.response.CommentResponse;
 import board.crud.comment.service.CommentService;

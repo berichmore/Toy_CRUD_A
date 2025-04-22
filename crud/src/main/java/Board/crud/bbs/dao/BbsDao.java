@@ -1,4 +1,4 @@
-package board.crud.bbs.mapper;
+package board.crud.bbs.dao;
 
 import board.crud.bbs.domain.Bbs;
 import org.apache.ibatis.annotations.Mapper;
@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 @Mapper
-public interface BbsMapper {
+public interface BbsDao {
 
     //전체 조회
     List<Bbs> selectBbsList();

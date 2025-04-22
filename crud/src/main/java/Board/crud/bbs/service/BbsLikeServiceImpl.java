@@ -5,7 +5,7 @@ import board.crud.bbs.dao.BbsLikeDao;
 import board.crud.bbs.dto.param.BbsLikeParam;
 import board.crud.bbs.dto.request.ToggleLikeRequest;
 import board.crud.bbs.dto.response.LikeStatusResponse;
-import board.crud.bbs.mapper.BbsMapper;
+import board.crud.bbs.dao.BbsDao;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,11 +13,11 @@ import org.springframework.transaction.annotation.Transactional;
 public class BbsLikeServiceImpl implements BbsLikeService {
 
     private final BbsLikeDao bbsLikeDao;
-    private final BbsMapper bbsMapper;
+    private final BbsDao bbsDao;
 
-    public BbsLikeServiceImpl(BbsLikeDao bbsLikeDao, BbsMapper bbsMapper){
+    public BbsLikeServiceImpl(BbsLikeDao bbsLikeDao, BbsDao bbsDao){
         this.bbsLikeDao = bbsLikeDao;
-        this.bbsMapper = bbsMapper;
+        this.bbsDao = bbsDao;
     }
 
 
@@ -31,10 +31,10 @@ public class BbsLikeServiceImpl implements BbsLikeService {
 
         if(aleadyLiked){
             bbsLikeDao.BbsLikeDelete(param);
-            bbsMapper.decreaseLikeCount(request.getBbsSeq());
+            bbsDao.decreaseLikeCount(request.getBbsSeq());
         } else {
             bbsLikeDao.BbsLikeInsert(param);
-            bbsMapper.increaseLikeCount(request.getBbsSeq());
+            bbsDao.increaseLikeCount(request.getBbsSeq());
         }
 
         int likeCount = bbsLikeDao.getLikeCount(request.getBbsSeq());

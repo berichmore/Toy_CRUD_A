@@ -1,4 +1,4 @@
-package board.crud.bbs.service.encrypt;
+package board.crud.security.encrypt;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;

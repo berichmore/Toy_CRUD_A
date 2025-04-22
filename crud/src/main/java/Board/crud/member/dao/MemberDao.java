@@ -1,11 +1,11 @@
-package board.crud.bbs.mapper;
+package board.crud.member.dao;
 
 
-import board.crud.bbs.domain.Member;
+import board.crud.member.domain.Member;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
-public interface MemberMapper {
+public interface MemberDao {
 
     //id로 조회 (로그인 겸용)
     Member selectMemberById(String id);

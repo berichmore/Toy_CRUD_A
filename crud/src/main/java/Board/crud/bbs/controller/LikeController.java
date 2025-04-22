@@ -1,10 +1,10 @@
 package board.crud.bbs.controller;
 
 import board.crud.bbs.dao.BbsLikeDao;
-import board.crud.bbs.domain.Member;
+import board.crud.member.domain.Member;
 import board.crud.bbs.dto.request.ToggleLikeRequest;
 import board.crud.bbs.dto.response.LikeStatusResponse;
-import board.crud.bbs.mapper.BbsMapper;
+import board.crud.bbs.dao.BbsDao;
 import board.crud.bbs.service.BbsLikeService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.ResponseEntity;
@@ -16,12 +16,12 @@ import org.springframework.web.bind.annotation.*;
 public class LikeController {
 
     private final BbsLikeService bbsLikeService;
-    private final BbsMapper bbsMapper;
+    private final BbsDao bbsDao;
     private final BbsLikeDao bbsLikeDao;
 
-    public LikeController(BbsLikeService bbsLikeService, BbsMapper bbsMapper, BbsLikeDao bbsLikeDao){
+    public LikeController(BbsLikeService bbsLikeService, BbsDao bbsDao, BbsLikeDao bbsLikeDao){
         this.bbsLikeService = bbsLikeService;
-        this.bbsMapper = bbsMapper;
+        this.bbsDao = bbsDao;
         this.bbsLikeDao = bbsLikeDao;
     }
 

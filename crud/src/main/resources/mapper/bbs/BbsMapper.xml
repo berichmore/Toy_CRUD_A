@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="board.crud.bbs.mapper.BbsMapper">
+<mapper namespace="board.crud.bbs.dao.BbsDao">
 
 <!--    게시물 수 -->
     <select id="selectBbsCount" resultType="int">
