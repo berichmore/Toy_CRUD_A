@@ -9,14 +9,13 @@ import java.sql.Timestamp;
 
 
 @Getter
-@Setter
 public class CommentResponse {
-    private Integer seq;
-    private String id;
-    private String content;
+    private final Integer seq;
+    private final String id;
+    private final String content;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm", timezone = "Asia/Seoul")
-    private Timestamp createdAt;
+    private final Timestamp createdAt;
 
 
     //VO((domain)댓글)을 DTO로 변환

@@ -19,15 +19,16 @@ public interface BbsService {
 
     //게시글 조회
     BbsResponse getBbsBySeq(int seq);
+
     //게시글 등록
-    void registerBbs(CreateBbsRequest request, String writerId);
-    //
-//    void updateRef(int seq);
+    void registerBbs(CreateBbsRequest createRequest, String writerId);
 
     //게시글 수정
-    void modifyBbs(UpdateBbsRequest request, String writerId);
+    void modifyBbs(UpdateBbsRequest modifyRequest, String writerId);
+
     //게시글 삭제
     void removeBbs(int seq, String requestUserId);
+
     //조회수 카운트
     void increaseReadCount(int seq);
 

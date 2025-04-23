@@ -6,5 +6,6 @@ import board.crud.bbs.dto.response.LikeStatusResponse;
 
 
 public interface BbsLikeService {
-    LikeStatusResponse toggleLike(String id, ToggleLikeRequest request);
+    LikeStatusResponse toggleLike(String userId, ToggleLikeRequest toggleLikeRequest);
+    int getLikeCount(int bbsSeq); //조회용
 }

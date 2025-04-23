@@ -5,8 +5,8 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface BbsLikeDao {
-    boolean exists(BbsLikeParam param);
-    void BbsLikeInsert(BbsLikeParam insertparam);
-    void BbsLikeDelete(BbsLikeParam deleteparam);
-    int getLikeCount(int bbsSeq);
+    boolean bbsLikeExists(BbsLikeParam likeBbsParam);
+    void bbsLikeInsert(BbsLikeParam likeInsertParam);
+    void bbsLikeDelete(BbsLikeParam likeDeleteParam);
+    int bbsGetLikeCount(int bbsSeq);
 }

@@ -6,23 +6,23 @@
 <mapper namespace="board.crud.bbs.dao.BbsLikeDao">
 
 <!--    누가 눌렀는지 확인-->
-    <select id="exists" parameterType="board.crud.bbs.dto.param.BbsLikeParam" resultType="boolean">
+    <select id="bbsLikeExists" parameterType="board.crud.bbs.dto.param.BbsLikeParam" resultType="boolean">
         select count(*) > 0
         from bbs_like
         where id = #{id} and bbs_seq = #{bbsSeq}
     </select>
-    <insert id="BbsLikeInsert" parameterType="board.crud.bbs.dto.param.BbsLikeParam">
+    <insert id="bbsLikeInsert" parameterType="board.crud.bbs.dto.param.BbsLikeParam">
         insert into bbs_like (id, bbs_seq)
         values (#{id}, #{bbsSeq})
 
     </insert>
-    <delete id="BbsLikeDelete" parameterType="board.crud.bbs.dto.param.BbsLikeParam">
+    <delete id="bbsLikeDelete" parameterType="board.crud.bbs.dto.param.BbsLikeParam">
         delete from bbs_like
         where id = #{id} and bbs_seq = #{bbsSeq}
     </delete>
 
 <!--    단순히 몇개의 좋아요가 있는지 확인-->
-    <select id="getLikeCount" parameterType="int" resultType="int">
+    <select id="bbsGetLikeCount" parameterType="int" resultType="int">
         select count(*)
         from bbs_like
         where bbs_seq = #{seq}
@@ -32,3 +32,7 @@
 
 <!--        BbsLikeDelete-->
 <!--        BbsLikeInsert-->
+
+<!--        bbsGetLikeCount-->
+<!--        bbsLikeDelete-->
+<!--        bbsLikeInsert-->

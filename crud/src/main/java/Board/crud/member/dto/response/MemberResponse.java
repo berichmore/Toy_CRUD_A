@@ -6,9 +6,9 @@ import lombok.Getter;
 
 @Getter
 public class MemberResponse {
-    private  String id;
-    private  String name;
-    private  String email;
+    private final String id;
+    private final String name;
+    private final String email;
 
     public MemberResponse(Member member){
         this.id = member.getId();

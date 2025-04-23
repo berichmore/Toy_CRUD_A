@@ -16,7 +16,7 @@ export const getLikeCount = async (bbsSeq) =>{
 //좋아요 토글( 로그인 필요함)
 export const toggleLike = async (bbsSeq) =>{
     try {
-        const res = await axios.post(`/like/${bbsSeq}`, {bbsSeq},{
+        const res = await axios.post(`/like`, {bbsSeq},{
             withCredentials: true //세션 쿠키 전송
         });
         return res.data;

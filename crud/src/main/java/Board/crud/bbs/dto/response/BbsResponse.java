@@ -1,22 +1,20 @@
 package board.crud.bbs.dto.response;
 
 import board.crud.bbs.domain.Bbs;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.sql.Timestamp;
 
 @Getter
-@AllArgsConstructor
 public class BbsResponse {
-    private int seq;
-    private String id;
-    private String title;
-    private String content;
-    private Timestamp createdAt;
-    private int readCount;
-    private int likeCount;
+    private final int seq;
+    private final String id;
+    private final String title;
+    private final String content;
+    private final Timestamp createdAt;
+    private final int readCount;
+    private final int likeCount;
 
 
     public BbsResponse(Bbs bbs){
