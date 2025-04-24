@@ -37,36 +37,3 @@ public class LikeController {
         return ResponseEntity.ok(bbsLikeCount);
     }
 }
-//private final BbsLikeService bbsLikeService;
-//private final BbsDao bbsDao;
-//private final BbsLikeDao bbsLikeDao;
-//
-//public LikeController(BbsLikeService bbsLikeService, BbsDao bbsDao, BbsLikeDao bbsLikeDao){
-//    this.bbsLikeService = bbsLikeService;
-//    this.bbsDao = bbsDao;
-//    this.bbsLikeDao = bbsLikeDao;
-//}
-//
-////좋아요 토글 api
-//
-//@GetMapping("/{seq}")
-//public ResponseEntity<?> getLikeCount(@PathVariable("seq") int seq){
-//    int count = bbsLikeDao.getLikeCount(seq);
-//    return ResponseEntity.ok(count);
-//}
-//
-//@PostMapping("/{seq}")
-//public ResponseEntity<?> toggleLike(@RequestBody ToggleLikeRequest request, HttpServletRequest httpRequest){
-//
-//    //1. 로그인 체크
-//    Member loginUser = (Member) httpRequest.getSession().getAttribute("loginUser");
-//    if(loginUser == null){
-//        return ResponseEntity.status(401).body("로그인이 필요합니다.");
-//    }
-//
-//    //2. 좋아요 처리
-//    LikeStatusResponse response = bbsLikeService.toggleLike(loginUser.getId(), request);
-//
-//    // 3. 응답 반환
-//    return ResponseEntity.ok(response);
-//}

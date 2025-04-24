@@ -17,6 +17,3 @@ public interface MemberService {
 
 
 }
-//Member login(String id, String pwd);
-//void join(Member member);
-//boolean existsById(String id);

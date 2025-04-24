@@ -32,21 +32,6 @@ public interface BbsService {
     //조회수 카운트
     void increaseReadCount(int seq);
 
-    //
-//    Bbs findBbsBySeq(int seq);
-
-    //
-         //리팩토링 이전 2개를 하나로 통합
-//    List<Bbs> getBbsList(int size, int page);
-//    int getTotalCount();
-
-
-
-
-
-    // seq를 통해 다시
-//    List<BbsVO> getList();
-//    BbsVO getById(String id);
 
 
 }
