@@ -33,17 +33,7 @@ const Login = () => {
         }
     };
 
-    const checkLogin = async () => {
-        try{
-            const response = axios.get("/member/me", {
-              withCredentials: true
-            });
-            alert("로그인상태입니다")
 
-        }catch(error){
-            console.error("로그인 상태 아님: " , error.response.data || error.message);
-        }
-    }
 
     // const getBbsList = () =>{
     //     axios.get("/bbs/list")
@@ -85,12 +75,6 @@ const Login = () => {
                 <button className="btn btn-outline-secondary"
                         onClick={login}
                 >로그인</button>
-
-                <button
-                className="btn-outline-secondary"
-                onClick={checkLogin}
-                >로그인 상태 체크</button>
-    
             </div>
 
         </div>

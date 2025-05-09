@@ -118,10 +118,7 @@ const BbsWrite = () => {
             <div className="my-5 d-flex justify-content-center">
                 <button className="btn btn-outline-secondary"
                         onClick={createBbs}
-
                 > 등록</button>
-
-
             </div>
 
         </div>
