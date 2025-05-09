@@ -49,6 +49,8 @@ dependencies {
 	// security 전체 말고 암호화만 쓸 거라면 ↓ 이것만 추가
 	implementation 'org.springframework.security:spring-security-crypto:6.2.2' // Boot 3.4.3 기준
 
+	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.1.0'
+
 
 
 }

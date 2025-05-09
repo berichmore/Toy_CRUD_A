@@ -45,7 +45,7 @@ const BbsWrite = () => {
                 console.log(res.data);
 
                 // alert(res.data.message("안녕하세요 "));
-                alert("이런이런 부트스트랩");
+                alert("새로운 글이 등록되었습니다.");
                 // alert(res.data);
                 // alert(res.data.message);
                 navigate('/bbslist');

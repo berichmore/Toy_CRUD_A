@@ -72,18 +72,17 @@ const Join = () => {
 
     return (
         <div>
-            Join
             <h1>회원가입</h1> &nbsp; &nbsp;
             <table className="table">
                 <tbody>
                     <tr>
                         <th className="col-2">아이디</th>
-                            <td>
+                            <td className="flex container">
                                 <input type="text"
                                        name="id"
                                        value={form.id}
-                                       size="50px"
                                        onChange={handleChange}
+                                       className="form-control w-25"
                                 />
                                 &nbsp; &nbsp;
                                 <button className="btn btn-outline-danger"
@@ -96,10 +95,10 @@ const Join = () => {
                         <th>이름</th>
                         <td>
                             <input type="text"
-                                   size="50px"
                                    name="name"
                                    value={form.name}
                                    onChange={handleChange}
+                                   className="form-control w-25"
                             />
                         </td>
                     </tr>
@@ -108,10 +107,10 @@ const Join = () => {
                         <th>비밀번호</th>
                         <td>
                             <input type="password"
-                                   size="50px"
                                    name="pwd"
                                    value={form.pwd}
                                    onChange={handleChange}
+                                   className="form-control w-25"
                             />
                         </td>
                     </tr>
@@ -120,11 +119,11 @@ const Join = () => {
                         <th>비밀번호 확인</th>
                         <td>
                             <input type="password"
-                                   size="50px"
                                    name="pwdConfirm"
                                    value={form.pwdConfirm}
                                    onChange={handleChange}
-                            name="pwdConfirm"
+                                   className="form-control w-25"
+                            // name="pwdConfirm"
                             />
                         </td>
                     </tr>
@@ -133,10 +132,10 @@ const Join = () => {
                         <th>이메일</th>
                         <td>
                         <input type="text"
-                               size="100px"
                                name="email"
                                value={form.email}
                                onChange={handleChange}
+                               className="form-control w-25"
                         />
                         </td>
                     </tr>
