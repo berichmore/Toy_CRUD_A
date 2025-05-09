@@ -73,7 +73,6 @@ spring.datasource.password=YOUR_DB_PASSWORD<br>
 |  Lombok   | 적용  |
 | MyBatis             | 3.0.4  |
 | MySQL Connector J   | 8.0.33 |
-| Swagger             |  X 예정 |
 
 <br />
 
