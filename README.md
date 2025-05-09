@@ -84,7 +84,7 @@ spring.datasource.password=YOUR_DB_PASSWORD<br>
 | React              | 16.2.0  |
 | react-axios        | 1.8.2   |
 | react-dom          | 19.0.0  |
-| react-js-pagination|  예정  |
+| react-js-pagination| 3.0.3  |
 | react-router-dom   | 6.3.0   |
 | react-scripts      | 5.0.1   |
 - .........
