@@ -71,7 +71,6 @@ spring.datasource.password=YOUR_DB_PASSWORD<br>
 | Spring Boot         | 3.4.3  |
 | Spring Security     | 6.2.2 |
 |  Lombok   | 적용  |
-| JSON Web Token      | X 예정 |
 | MyBatis             | 3.0.4  |
 | MySQL Connector J   | 8.0.33 |
 | Swagger             |  X 예정 |
@@ -87,7 +86,6 @@ spring.datasource.password=YOUR_DB_PASSWORD<br>
 | react-axios        | 1.8.2   |
 | react-dom          | 19.0.0  |
 | react-js-pagination|  예정  |
-|      |   |
 | react-router-dom   | 6.3.0   |
 | react-scripts      | 5.0.1   |
 - .........
