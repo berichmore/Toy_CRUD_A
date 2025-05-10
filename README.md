@@ -42,11 +42,11 @@ spring.datasource.password=YOUR_DB_PASSWORD<br>
 
 **BackEnd**
 
-![Backend.png](Backend.png)
+![Backend.png](crud/images/Backend.png)
 
 **Frontend**
 
-![Frontend.png](Frontend.png)
+![Frontend.png](crud/images/Frontend.png)
 
 ## 사용 기술
 
@@ -99,60 +99,60 @@ spring.datasource.password=YOUR_DB_PASSWORD<br>
     
     조회됩니다.
     
-    ![bbs1.png](bbs1.png)
+    ![bbs1.png](crud/images/bbs1.png)
     
-    ![image.png](image.png)
+    ![image.png](crud/images/image.png)
     
 - 게시글 제목을 클릭하면, 게시글의 상세 내용을 조회할 수 있습니다.
 
-![bbs2 - title click.png](bbs2_-_title_click.png)
+![bbs2 - title click.png](crud/images/bbs2_-_title_click.png)
 
-![bbs detail.png](bbs_detail.png)
+![bbs detail.png](crud/images/bbs_detail.png)
 
 **게시글 검색**
 
 - 게시글의 제목과 내용 또는 작성자로 게시글을 검색할 수 있습니다.
 
-![bbs search.png](bbs_search.png)
+![bbs search.png](crud/images/bbs_search.png)
 
 ### 게시글 작성
 
 - 로그인한 사용자는 게시글을 작성할 수 있습니다.
     
-    ![bbs write.png](bbs_write.png)
+    ![bbs write.png](crud/images/bbs_write.png)
     
 
-![bbs write alert.png](bbs_write_alert.png)
+![bbs write alert.png](crud/images/bbs_write_alert.png)
 
-![bbs write detail.png](bbs_write_detail.png)
+![bbs write detail.png](crud/images/bbs_write_detail.png)
 
 - 로그인 하지 않았을 경우 글 작성이 제한됩니다.
 
-![bbs write no login alert.png](bbs_write_no_login_alert.png)
+![bbs write no login alert.png](crud/images/bbs_write_no_login_alert.png)
 
 ### 게시글 수정
 
 - 게시글 작성자는 게시글을 수정할 수 있습니다.
 
-![bbs update click.png](bbs_update_click.png)
+![bbs update click.png](crud/images/bbs_update_click.png)
 
-![bbs update page.png](bbs_update_page.png)
+![bbs update page.png](crud/images/bbs_update_page.png)
 
-![bbs update alert.png](bbs_update_alert.png)
+![bbs update alert.png](crud/images/bbs_update_alert.png)
 
-![bbs update work.png](bbs_update_work.png)
+![bbs update work.png](crud/images/bbs_update_work.png)
 
 - 자신이 작성한 게시글에만 수정, 삭제 버튼이 활성화됩니다.
 
-![bbs equal id update button.png](bbs_equal_id_update_button.png)
+![bbs equal id update button.png](crud/images/bbs_equal_id_update_button.png)
 
 **게시글 삭제**
 
 - 게시글 작성자는 게시글을 삭제할 수 있습니다.
 
-![bbs delete alert.png](bbs_delete_alert.png)
+![bbs delete alert.png](crud/images/bbs_delete_alert.png)
 
-![bbs delete work.png](bbs_delete_work.png)
+![bbs delete work.png](crud/images/bbs_delete_work.png)
 
 ## 댓글 기능
 
@@ -162,14 +162,14 @@ spring.datasource.password=YOUR_DB_PASSWORD<br>
 
 - `게시글 상세`에서 관련된 댓글을 조회할 수 있습니다.
     
-    ![bbs comment get.png](bbs_comment_get.png)
+    ![bbs comment get.png](crud/images/bbs_comment_get.png)
     
 
 ### 댓글 작성
 
 - 로그인한 사용자는 댓글을 작성할 수 있습니다.
     
-    ![bbs comment write after.png](bbs_comment_write_after.png)
+    ![bbs comment write after.png](crud/images/bbs_comment_write_after.png)
     
 
 ## 회원 기능
@@ -180,47 +180,47 @@ spring.datasource.password=YOUR_DB_PASSWORD<br>
 
 - 회원가입 시 아이디 중복을 체크합니다.
 
-![join equal id.png](join_equal_id.png)
+![join equal id.png](crud/images/join_equal_id.png)
 
-![join new id check.png](join_new_id_check.png)
+![join new id check.png](crud/images/join_new_id_check.png)
 
 - 회원가입을 통해 서비스에 사용자 정보를 입력합니다.
 
-![join field fill.png](join_field_fill.png)
+![join field fill.png](crud/images/join_field_fill.png)
 
-![join success.png](join_success.png)
+![join success.png](crud/images/join_success.png)
 
 ### 로그인/ 로그아웃
 
 - 로그인
     
-    ![login after join.png](login_after_join.png)
+    ![login after join.png](crud/images/login_after_join.png)
     
 
-![login alert.png](login_alert.png)
+![login alert.png](crud/images/login_alert.png)
 
 - 로그인을 완료하면 브라우저의 Local Storage에 사용자 id와 정보를 저장합니다.
     
-    ![login session storage.png](login_session_storage.png)
+    ![login session storage.png](crud/images/login_session_storage.png)
     
 
 - 로그아웃
     
     
-    ![logout.png](logout.png)
+    ![logout.png](crud/images/logout.png)
     
 
 ## API 명세서
 
 ---
 
-![Swagger.png](Swagger.png)
+![Swagger.png](crud/images/Swagger.png)
 
 ## ERD설계
 
 ---
 
-![erd.png](erd.png)
+![erd.png](crud/images/erd.png)
 
 ## 트러블슈팅
 
@@ -228,7 +228,8 @@ spring.datasource.password=YOUR_DB_PASSWORD<br>
 
 ### 리팩토링을 통해 DTO 클래스 분리
 
-![before refac.png](before_refac.png)
+![before refac.png](crud/images/before_refac.png)
+![after refac.png](crud/images/after_refac.png)
 
 기존은 DTO없이 domain을 바로 넘겨 client가 알 필요없고 알아서도 안되는 기존 정보 모두를 넘겨주었고 보안에도 문제가 생긴다고 판단, 
 
@@ -242,4 +243,3 @@ DTO만 수정해주면 되는 유지보수성이 장점입니다.
 
 하지만 **단점**은 기능이 추가될 때마다 클래스 파일이 늘어나 관리가 힘들어진다는 점, 데이터를 한 눈에 확인할 수 있지만 그러기 위해서는 직접 클래스 파일을 열어봐야 한다는 번거로움이 있습니다.
 
-![after refac.png](after_refac.png)
