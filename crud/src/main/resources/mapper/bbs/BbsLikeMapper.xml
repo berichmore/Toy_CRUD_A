@@ -28,6 +28,13 @@
         where bbs_seq = #{seq}
     </select>
 
+    <select id="selectForUpdate" resultType="board.crud.bbs.domain.BbsLike">
+        SELECT *
+        FROM bbs_like
+        WHERE id = #{id} AND bbs_seq =#{bbsSeq}
+        FOR UPDATE
+    </select>
+
 </mapper>
 
 <!--        BbsLikeDelete-->

@@ -2,6 +2,7 @@ package board.crud.bbs.service;
 
 
 import board.crud.bbs.dao.BbsLikeDao;
+import board.crud.bbs.domain.BbsLike;
 import board.crud.bbs.dto.param.BbsLikeParam;
 import board.crud.bbs.dto.request.ToggleLikeRequest;
 import board.crud.bbs.dto.response.LikeStatusResponse;
@@ -22,23 +23,44 @@ public class BbsLikeServiceImpl implements BbsLikeService {
 
 
 
+//    @Transactional
+//    @Override
+//    public LikeStatusResponse toggleLike(String userId, ToggleLikeRequest toggleLikeRequest) {
+//        BbsLikeParam bbsLikeParam = new BbsLikeParam(userId, toggleLikeRequest.getBbsSeq());
+//        boolean aleadyLiked = bbsLikeDao.bbsLikeExists(bbsLikeParam);
+//
+//        if(aleadyLiked){
+//            bbsLikeDao.bbsLikeDelete(bbsLikeParam);
+//            bbsDao.decreaseLikeCount(bbsLikeParam.getBbsSeq());
+//        }else {
+//            bbsLikeDao.bbsLikeInsert(bbsLikeParam);
+//            bbsDao.increaseLikeCount(bbsLikeParam.getBbsSeq());
+//        }
+//
+//        int updateCount = bbsLikeDao.bbsGetLikeCount(toggleLikeRequest.getBbsSeq());
+//        return new LikeStatusResponse(!aleadyLiked, updateCount);
+//    }
+
     @Transactional
     @Override
     public LikeStatusResponse toggleLike(String userId, ToggleLikeRequest toggleLikeRequest) {
-        BbsLikeParam bbsLikeParam = new BbsLikeParam(userId, toggleLikeRequest.getBbsSeq());
-        boolean aleadyLiked = bbsLikeDao.bbsLikeExists(bbsLikeParam);
+        BbsLikeParam param = new BbsLikeParam(userId, toggleLikeRequest.getBbsSeq());
 
-        if(aleadyLiked){
-            bbsLikeDao.bbsLikeDelete(bbsLikeParam);
-            bbsDao.decreaseLikeCount(bbsLikeParam.getBbsSeq());
-        }else {
-            bbsLikeDao.bbsLikeInsert(bbsLikeParam);
-            bbsDao.increaseLikeCount(bbsLikeParam.getBbsSeq());
+        // FOR UPDATE 락 -> 좋아요 여부 확인
+        BbsLike existing = bbsLikeDao.selectForUpdate(param);
+
+        if(existing != null){
+            bbsLikeDao.bbsLikeDelete(param);
+            bbsDao.decreaseLikeCount(param.getBbsSeq());
+        } else {
+            bbsLikeDao.bbsLikeInsert(param);
+            bbsDao.increaseLikeCount(param.getBbsSeq());
         }
-
-        int updateCount = bbsLikeDao.bbsGetLikeCount(toggleLikeRequest.getBbsSeq());
-        return new LikeStatusResponse(!aleadyLiked, updateCount);
+        int updatedCount = bbsLikeDao.bbsGetLikeCount(param.getBbsSeq());
+        return new LikeStatusResponse(existing == null, updatedCount);
     }
+
+
 
 
     @Override

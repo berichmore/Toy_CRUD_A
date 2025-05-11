@@ -36,4 +36,17 @@ public class LikeController {
         int bbsLikeCount = bbsLikeService.getLikeCount(bbsSeq);
         return ResponseEntity.ok(bbsLikeCount);
     }
+
+
+
+    //JMeter Test API
+    @PostMapping("/test")
+    public ResponseEntity<LikeStatusResponse> toggleLikeTest(@RequestBody ToggleLikeRequest toggleLikeRequest){
+        Member loginUser = new Member();
+        loginUser.setId("테스트");
+        loginUser.setPwd("12341234");
+
+        LikeStatusResponse result = bbsLikeService.toggleLike(loginUser.getId(), toggleLikeRequest);
+        return ResponseEntity.ok(result);
+    }
 }
