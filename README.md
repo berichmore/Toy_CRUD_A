@@ -81,6 +81,7 @@ spring.datasource.password=YOUR_DB_PASSWORD<br>
 | Lombok | 적용 |
 | MyBatis | 3.0.4 |
 | MySQL ConnentorJ | 8.0.33 |
+| Apach JMeter | 5.6.3 |
 
 **Frontend**
 
@@ -265,3 +266,12 @@ DTO만 수정해주면 되는 유지보수성이 장점입니다.
 
 하지만 **단점**은 기능이 추가될 때마다 클래스 파일이 늘어나 관리가 힘들어진다는 점, 데이터를 한 눈에 확인할 수 있지만 그러기 위해서는 직접 클래스 파일을 열어봐야 한다는 번거로움이 있습니다.
 
+
+### 
+게시글의 좋아요 기능을 구현한 이후, 동일 사용자가 여러 번 요청 시 중복된 insert/ delete로 인해 
+like_count 값이 꼬일 수 있는 `Race Condition` 문제가 발생할 수 있음을 확인했습니다.
+이를 개선하기 위해 Jmeter를 활용해 100건의 동시 요청 테스트를 수행했습니다.
+
+![innoDB check](crud/images/innoDB check.png)
+
+우선 `For update` 를 쓰기위해 mySql이 innoDB 자격이 있는지부터 체크했습니다.
