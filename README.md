@@ -293,19 +293,20 @@ like_count 값이 꼬일 수 있는 `Race Condition` 문제가 발생할 수 있
 
 <br>
 
-![RaceCondition Concurrency](crud/images/RaceCondition%20Concurrency.png)
+![RaceCondition Concurrency](crud/images/RaceCondition%20Concurrency.png)<br>
 bbs_like 테이블에 `insert`가  `1건 발생`했는지 확인했고
 
 
 <br>
 
-
-
+![RaceCondition_Concurrency_commit_result](https://github.com/berichmore/Toy_CRUD_A/blob/main/crud/images/RaceCondition_Concurrency_commit_result.png?raw=true)
+<br>
 100여건의 요청에도 불구하고 단 한번의 좋아요가 
-들어간 것을 알 수 있었고 이로서
+들어간 것을 알 수 있었고 이로서<br>
 중복 `count`증가 없이 데이터 `정합성이 유지`되었음을 확인했습니다.
-이로서  단순 @Trancsactial + FOR UPDATE 조합으로 
 
-실제 동시 요청 상황에서도 Race Condition을 방지하고 
+
+이로서  단순 @Trancsactial + FOR UPDATE 조합으로 <br>
+실제 동시 요청 상황에서도 Race Condition을 방지하고 <br>
 데이터 정합성을 보장했습니다.
 
