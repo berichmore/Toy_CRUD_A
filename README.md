@@ -298,7 +298,7 @@ bbs_like 테이블에 `insert`가  `1건 발생`했는지 확인했고
 
 
 <br>
-![RaceCondition Concurrency - commit result](crud/images/RaceCondition_Concurrency_commit_result.png)
+
 
 
 100여건의 요청에도 불구하고 단 한번의 좋아요가 
