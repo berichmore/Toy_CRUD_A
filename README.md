@@ -64,11 +64,114 @@ spring.datasource.password=YOUR_DB_PASSWORD<br>
 
 **BackEnd**
 
+물론입니다. 마크다운(`.md`) 파일에 바로 복사해서 사용할 수 있도록 코드 블록 형식으로 만들어 드리겠습니다.
+
+아래 내용을 그대로 복사해서 붙여넣기 하시면 됩니다.
+
+-----
+
+### 📂 Backend 디렉토리 구조
+
+```
+src
+├── main
+│   ├── java
+│   │   └── Board
+│   │       └── crud
+│   │           ├── CrudApplication.java
+│   │           ├── bbs                       <--- 게시판 도메인 관련 페이지
+│   │           │   ├── controller
+│   │           │   ├── dao
+│   │           │   ├── domain
+│   │           │   ├── dto
+|   |           |       ├── param      Service <--- Dao 전송 데이터 (DB 쿼리 수행시 필요한 필드)
+|   |           |       ├── request    Client <--- Server 요청 데이터
+|   |           |       ├── response   Server <--- Client 응답 데이터 
+│   │           │   └── service
+│   │           ├── comment
+│   │           │   ├── controller
+│   │           │   ├── dao
+│   │           │   ├── domain
+│   │           │   ├── dto
+│   │           │   └── service
+│   │           ├── config                     <---  설정 관련 패키지
+│   │           │   └── SecurityConfig.java   
+│   │           └── member
+│   │           |    ├── controller
+│   │           |    ├── dao
+│   │           |    ├── domain
+│   │           |    ├── dto
+│   │           |    └── service
+│   │           └── member
+│   │           └── security      <--- Spring Security 관련 패키지 
+│   │           |    └── encrypt
+│   │           |           └── PasswordEncryptor
+│   └── resources
+│       ├── mapper
+│       ├── static
+│       └── templates
+└── test
+    └── java
+        └── Board
+            └── crud
+                └── CrudApplicationTests.java
+```
+
+\<br\>
+
+
+
+
+
+
+
 ![Backend.png](crud/images/Backend.png)
 
-**Frontend**
+
+
+**Frontend** 📂 Frontend 디렉토리 구조
 
 ![Frontend.png](crud/images/Frontend.png)
+
+```
+public
+└── images
+src
+├── Components
+│   ├── api
+│   │   ├── CommentApi.jsx
+│   │   ├── bbsApi.jsx
+│   │   └── likeApi.jsx
+│   ├── app
+│   │   ├── Footer.jsx
+│   │   ├── Header.jsx
+│   │   ├── Home.jsx
+│   │   ├── Main.jsx
+│   │   └── Nav.jsx
+│   ├── bbs
+│   │   ├── BbsDetail.jsx
+│   │   ├── BbsList.jsx
+│   │   ├── BbsUpdate.jsx
+│   │   └── BbsWrite.jsx
+│   ├── comment
+│   │   ├── Comment.jsx
+│   │   ├── CommentList.jsx
+│   │   └── CommentWrite.jsx
+│   ├── context
+│   │   └── LoginProvider.jsx
+│   ├── member
+│   │   ├── Join.jsx
+│   │   ├── Login.jsx
+│   │   └── Logout.jsx
+│   └── router
+│       └── Router.jsx
+└── css
+    ├── bbslist.css
+    ├── page.css
+    └── style.css
+```
+
+
 
 ## 사용 기술
 
