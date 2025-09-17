@@ -275,3 +275,50 @@ like_count 값이 꼬일 수 있는 `Race Condition` 문제가 발생할 수 있
 ![innoDB check](crud/images/innoDB check.png)
 
 우선 `For update` 를 쓰기위해 mySql이 innoDB 자격이 있는지부터 체크했습니다.
+
+
+### ’좋아요’ 트랜잭션 Race Condition 동시성 제어
+
+### 
+게시글의 좋아요 기능을 구현한 이후, 동일 사용자가 여러 번 요청 시 중복된 insert/ delete로 인해 
+like_count 값이 꼬일 수 있는 `Race Condition` 문제가 발생할 수 있음을 확인했습니다.
+이를 개선하기 위해 Jmeter를 활용해 100건의 동시 요청 테스트를 수행했습니다.
+
+<br>
+
+![innoDB check](crud/images/innoDB%20check.png)<br>
+
+![innoDB check](crud/images/innoDB check.png)
+
+우선 `For update` 를 쓰기위해 mySql이 innoDB 자격이 있는지부터 체크했습니다.
+
+
+<br>
+
+![need session in JMeter](crud/images/need%20session%20in%20JMeter.png)
+![JMeter Test API](crud/images/JMeter%20Test%20API.png)
+
+`JMeter`에서 401이 뜨는 바람에  JMeter Test API를 새로 넣어주었고
+`session 권한 주입` 후  테스트를 진행할 수 있었습니다.
+
+
+![JMeter Test](crud/images/JMeter%20Test.png)
+
+<br>
+
+![RaceCondition Concurrency](crud/images/RaceCondition%20Concurrency.png)
+bbs_like 테이블에 `insert`가  `1건 발생`했는지 확인했고
+
+
+<br>
+![RaceCondition Concurrency - commit result](crud/images/RaceCondition%20Concurrency-commit%20result.png)
+
+
+100여건의 요청에도 불구하고 단 한번의 좋아요가 
+들어간 것을 알 수 있었고 이로서
+중복 `count`증가 없이 데이터 `정합성이 유지`되었음을 확인했습니다.
+이로서  단순 @Trancsactial + FOR UPDATE 조합으로 
+
+실제 동시 요청 상황에서도 Race Condition을 방지하고 
+데이터 정합성을 보장했습니다.
+
