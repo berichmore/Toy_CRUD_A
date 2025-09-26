@@ -2,7 +2,7 @@
 
 **게시판** 웹 어플리케이션 프로젝트입니다.
 
-2025 03. 24 ~ 2025.04.23 까지 약 한달동안 `React`를 학습하며 `Spring Boot`와  `React`를 사용해 구현했습니다. 
+2025 03. 24 ~ 2025.04.23 까지 약 한 달동안 `React`를 학습하며 `Spring Boot`와  `React`를 사용해 구현했습니다. 
 
 이 프로젝트를 통해 이루고자 한 목표는 Spring에서 제공하는 프레임워크를 사용해보기, React 적용해보기였습니다. 프로젝트 구현 과정 동안 세션 회원 인증/허가,  좋아요 트랜잭션 동시성 처리에 대해 고민하며 
 
@@ -149,7 +149,7 @@ spring.datasource.password=YOUR_DB_PASSWORD<br>
 
 ![bbs write detail.png](crud/images/bbs_write_detail.png)
 
-- 로그인 하지 않았을 경우 글 작성이 제한됩니다.
+- 로그인하지 않았을 경우 글 작성이 제한됩니다.
 
 ![bbs write no login alert.png](crud/images/bbs_write_no_login_alert.png)
 
@@ -256,25 +256,18 @@ spring.datasource.password=YOUR_DB_PASSWORD<br>
 
 기존은 DTO없이 domain을 바로 넘겨 client가 알 필요없고 알아서도 안되는 기존 정보 모두를 넘겨주었고 보안에도 문제가 생긴다고 판단, 
 
-그에 더해 dto구조를 도입함으로써  요청과 응답으로 주고받는 데이터를 한 눈에 확인할 수 있겠다고 생각되었고  요청받은 데이터를 바탕으로 SQL쿼리를 수행할 때 필요한 데이터만을 넘겨주기위해 Service에서 DAO로 넘기는 파라미터도 DTO를 분리했습니다.
+그에 더해 dto구조를 도입함으로써  요청과 응답으로 주고받는 데이터를 한눈에 확인할 수 있겠다고 생각되었고  요청받은 데이터를 바탕으로 SQL쿼리를 수행할 때 필요한 데이터만을 넘겨주기위해 Service에서 DAO로 넘기는 파라미터도 DTO를 분리했습니다.
 
 이렇게 구현했을 때의 **장점**은 
 
-컨트롤러 메서드의 파라미터로 많은 이자를 넘겨주지 않고 필요한 인자만 넘겨주면 된다는 점,
+컨트롤러 메서드의 파라미터로 많은 인자를 넘겨주지 않고 필요한 인자만 넘겨주면 된다는 점,
 주고받는 데이터를 확인하고 수정해야하는 경우 
 DTO만 수정해주면 되는 유지보수성이 장점입니다.
 
 하지만 **단점**은 기능이 추가될 때마다 클래스 파일이 늘어나 관리가 힘들어진다는 점, 데이터를 한 눈에 확인할 수 있지만 그러기 위해서는 직접 클래스 파일을 열어봐야 한다는 번거로움이 있습니다.
 
 
-### 
-게시글의 좋아요 기능을 구현한 이후, 동일 사용자가 여러 번 요청 시 중복된 insert/ delete로 인해 
-like_count 값이 꼬일 수 있는 `Race Condition` 문제가 발생할 수 있음을 확인했습니다.
-이를 개선하기 위해 Jmeter를 활용해 100건의 동시 요청 테스트를 수행했습니다.
 
-![innoDB check](crud/images/innoDB check.png)
-
-우선 `For update` 를 쓰기위해 mySql이 innoDB 자격이 있는지부터 체크했습니다.
 
 
 ### ’좋아요’ 트랜잭션 Race Condition 동시성 제어
@@ -314,10 +307,10 @@ bbs_like 테이블에 `insert`가  `1건 발생`했는지 확인했고
 ![RaceCondition Concurrency - commit result](crud/images/RaceCondition%20Concurrency-commit%20result.png)
 
 
-100여건의 요청에도 불구하고 단 한번의 좋아요가 
-들어간 것을 알 수 있었고 이로서
+100여건의 요청에도 불구하고 단 한 번의 좋아요가 
+들어간 것을 알 수 있었고 이로써
 중복 `count`증가 없이 데이터 `정합성이 유지`되었음을 확인했습니다.
-이로서  단순 @Trancsactial + FOR UPDATE 조합으로 
+이로써  단순 @Trancsactial + FOR UPDATE 조합으로 
 
 실제 동시 요청 상황에서도 Race Condition을 방지하고 
 데이터 정합성을 보장했습니다.
