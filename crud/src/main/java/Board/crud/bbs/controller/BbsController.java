@@ -35,7 +35,7 @@ public class BbsController {
 
     // 게시글 검색
     @GetMapping("/search")
-    public ResponseEntity<List<B0bsResponse>> searchBbs(
+    public ResponseEntity<List<BbsResponse>> searchBbs(
             @RequestParam("type") String type,
             @RequestParam("keyword") String keyword){
         return ResponseEntity.ok(bbsService.searchBbs(type, keyword));
