@@ -42,11 +42,15 @@ public class LikeController {
     //JMeter Test API
     @PostMapping("/test")
     public ResponseEntity<LikeStatusResponse> toggleLikeTest(@RequestBody ToggleLikeRequest toggleLikeRequest){
-        Member loginUser = new Member();
-        loginUser.setId("테스트");
-        loginUser.setPwd("12341234");
+//        Member loginUser = new Member();
+//        loginUser.setId("테스트");
+//        loginUser.setPwd("12341234");
 
-        LikeStatusResponse result = bbsLikeService.toggleLike(loginUser.getId(), toggleLikeRequest);
+        // JMeter가 보낸 request 객체를 직접 꺼낼 수 있도록 하기 위함
+        String memberId = toggleLikeRequest.getMemberId();
+
+//        LikeStatusResponse result = bbsLikeService.toggleLike(loginUser.getId(), toggleLikeRequest);
+        LikeStatusResponse result = bbsLikeService.toggleLike(memberId, toggleLikeRequest);
         return ResponseEntity.ok(result);
     }
 }
