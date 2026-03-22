@@ -44,8 +44,11 @@ public class BbsLikeServiceImpl implements BbsLikeService {
     @Transactional
     @Override
     public LikeStatusResponse toggleLike(String userId, ToggleLikeRequest toggleLikeRequest) {
+
         BbsLikeParam param = new BbsLikeParam(userId, toggleLikeRequest.getBbsSeq());
 
+        System.out.println("현재 실행중인 스레드 이름: " + Thread.currentThread().getName() +
+                ", 요청 회원: " + param.getId());
         // FOR UPDATE 락 -> 좋아요 여부 확인
         BbsLike existing = bbsLikeDao.selectForUpdate(param);
 
