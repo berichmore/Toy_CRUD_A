@@ -7,6 +7,7 @@ import board.crud.bbs.dto.request.CreateBbsRequest;
 import board.crud.bbs.dto.request.UpdateBbsRequest;
 import board.crud.bbs.dto.response.BbsResponse;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.List;
@@ -22,7 +23,7 @@ public class BbsServiceImpl implements BbsService{
         this.bbsDao = bbsDao;
     }
 
-
+    @Transactional(readOnly = true)
     @Override
     public Map<String, Object> getBbsListWithCount(int page, int size) {
         int offset = (page - 1) * size;
@@ -49,6 +50,7 @@ public class BbsServiceImpl implements BbsService{
         return new BbsResponse(bbs);
     }
 
+    @Transactional
     @Override
     public void registerBbs(CreateBbsRequest createRequest, String writerId) {
         Bbs registerBbs = new Bbs();
@@ -60,6 +62,7 @@ public class BbsServiceImpl implements BbsService{
         bbsDao.updateRef(registerBbs.getSeq());
     }
 
+    @Transactional
     @Override
     public void modifyBbs(UpdateBbsRequest modifyRequest, String writerId) {
         Bbs origin = bbsDao.selectBbsBySeq(modifyRequest.getSeq());
@@ -70,6 +73,7 @@ public class BbsServiceImpl implements BbsService{
         bbsDao.updateBbs(origin);
     }
 
+    @Transactional
     @Override
     public void removeBbs(int seq, String requestUserId) {
         Bbs origin = bbsDao.selectBbsBySeq(seq);
