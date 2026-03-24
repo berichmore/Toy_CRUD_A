@@ -5,6 +5,7 @@ import board.crud.comment.domain.Comment;
 import board.crud.comment.dto.request.CreateCommentRequest;
 import board.crud.comment.dto.response.CommentResponse;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,6 +20,7 @@ public class CommentServiceImpl implements CommentService {
     }
 
 
+    @Transactional
     @Override
     public void writeComment(CreateCommentRequest createCommentRequest, String writerId) {
         Comment comment = new Comment(); //도메인 객체 생성은 Service에서만
