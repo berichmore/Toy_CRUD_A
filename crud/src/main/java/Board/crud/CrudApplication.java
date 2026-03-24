@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 //@MapperScan("board.crud.bbs.mapper")
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {"board.crud","board.common"})
 public class CrudApplication {
 
 	public static void main(String[] args) {

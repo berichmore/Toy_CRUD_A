@@ -6,8 +6,9 @@ export const postComment = async (bbsSeq, content) =>{
     try {
         const res = await axios.post("/comment", {bbsSeq ,content},
             {withCredentials: true});
+        if (res.data.success)
         console.log("[contentApi] 댓글 등록 성공", res.data);
-        return res.data
+        return res.data.data;
     }catch (error){
         console.error("[contentApi 댓글 등록 실패", error);
         throw  error;
@@ -19,8 +20,9 @@ export const getCommentsByBbsSeq = async (bbsSeq) =>{
     try {
         const res = await axios.get(`/comment/${bbsSeq}`,
             {withCredentials: true});
+        if (res.data.success)
         console.log("[commentApi] 댓글 목록 조회 성공", res.data);
-        return res.data;
+        return res.data.data;
     }catch (error){
         console.error("[commentApi] 댓글 목록 조회 실패", error);
         throw error;
