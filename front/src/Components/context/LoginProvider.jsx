@@ -10,7 +10,10 @@ const LoginProvider = ({children}) => {
 
     useEffect(() => {
         axios.get('/member/me', {withCredentials: true})
-            .then((res) => setLoginUser(res.data))
+            .then((res) => {
+                if (res.data.success)
+                setLoginUser(res.data.data);
+    })
             .catch((err) => setLoginUser(null));
     }, []);
     return (

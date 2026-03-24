@@ -21,15 +21,17 @@ const Login = () => {
             }, {
             withCredentials: true
         });
-        console.log("로그인 성공", response.data);
-        setLoginUser(response.data);
-        alert(response.data.name + "님, 로그인 되었습니다.");
+        console.log("로그인 성공", response.data.data);
+        setLoginUser(response.data.data);
+        alert(response.data.data.name + "님, 로그인 되었습니다.");
         navigate("/bbslist");
 
 
     } catch (error){
+            const errorMessage = error.response?.data?.message ||"로그인 중 오류 발생 ";
             console.error("로그인 실패", error.response.data);
-            alert(error.response.data || "로그인 중 오류 발생");
+            // alert(error.response.data || "로그인 중 오류 발생");
+            alert(errorMessage);
         }
     };
 

@@ -30,7 +30,7 @@ const Join = () => {
             }
             try {
                 const res = await axios.get(`/member/check?id=${form.id}`);
-                if (res.data){
+                if (res.data.success && res.data.data){
                     alert(" 이미 존재하는 아이디 입니다.")
                 }else{
                     alert(" 사용 가능한 아이디 입니다.")

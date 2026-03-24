@@ -36,9 +36,13 @@ const BbsLIst = () => {
                     keyword: keyword
                 }
             });
-            setBbsList(response.data);   //검색 결과 표시
+            if (response.data.success) {
+                setBbsList(response.data.data || []);
+            }
+            // setBbsList(response.data);   //검색 결과 표시
         }catch (error){
             console.error("에러발생", error);
+            setBbsList([]);
         }
 
     }
@@ -62,11 +66,17 @@ const BbsLIst = () => {
         })
 
             .then((response)=> {
-                console.log(response.data);
-                setBbsList(response.data.bbsList);
-                setTotalCount(response.data.totalCount);
+
+                if (response.data.success && response.data.data) {
+                console.log(response.data.success);
+                setBbsList(response.data.data.bbsList || []);
+                setTotalCount(response.data.data.totalCount || 0);
+                }
             })
-            .catch((error)=>{}
+            .catch((error)=>{
+                console.error("목록 조회 실패", error);
+                setBbsList([]);
+                }
             )
     }
 
@@ -146,8 +156,8 @@ const BbsLIst = () => {
 
                     <tbody>
                     {
-                        bbsList.map((bbs, idx) => (
-                            <tr key={bbs.sequence}>
+                        bbsList?.map((bbs, idx) => (
+                            <tr key={bbs.seq}>
                                 <td>{bbs.seq}</td>
                                 {/*<td  className="clickable" onClick={()=> handleClick(bbs.seq)}>{bbs.title}</td>*/}
                                 <td><Link to={`/bbsdetail/${bbs.seq}`}>{bbs.title}</Link></td>
