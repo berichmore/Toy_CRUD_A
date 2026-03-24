@@ -4,6 +4,7 @@ package board.crud.bbs.service;
 import board.crud.bbs.domain.Bbs;
 import board.crud.bbs.dto.request.CreateBbsRequest;
 import board.crud.bbs.dto.request.UpdateBbsRequest;
+import board.crud.bbs.dto.response.ApiResponse;
 import board.crud.bbs.dto.response.BbsResponse;
 
 import java.util.List;

@@ -5,6 +5,7 @@ import board.crud.bbs.dao.BbsDao;
 import board.crud.bbs.domain.Bbs;
 import board.crud.bbs.dto.request.CreateBbsRequest;
 import board.crud.bbs.dto.request.UpdateBbsRequest;
+import board.crud.bbs.dto.response.ApiResponse;
 import board.crud.bbs.dto.response.BbsResponse;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -75,10 +76,14 @@ public class BbsServiceImpl implements BbsService{
 
     @Transactional
     @Override
-    public void removeBbs(int seq, String requestUserId) {
+    public void removeBbs(int seq, String requestUserId){
         Bbs origin = bbsDao.selectBbsBySeq(seq);
-        if(origin == null) throw new IllegalArgumentException("게시글이 존재하지 않습니다");
-        if(!origin.getId().equals(requestUserId)) throw new SecurityException("작성자만 삭제할 수 있습니다.");
+        if (origin == null) {
+            throw new IllegalArgumentException("게시글이 존재하지 않습니다");
+        }
+        if (!origin.getId().equals(requestUserId)) {
+            throw new SecurityException("작성자만 삭제할 수 있습니다.");
+        }
         bbsDao.deleteBbs(seq);
     }
 
