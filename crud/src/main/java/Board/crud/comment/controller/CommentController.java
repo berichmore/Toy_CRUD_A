@@ -1,6 +1,8 @@
 package board.crud.comment.controller;
 
 
+import board.common.globalException.UnauthorizedException;
+import board.crud.bbs.dto.response.ApiResponse;
 import board.crud.comment.dto.request.CreateCommentRequest;
 import board.crud.comment.dto.response.CommentResponse;
 import board.crud.comment.service.CommentService;
@@ -24,20 +26,20 @@ public class CommentController {
     }
 
     @PostMapping
-    public ResponseEntity<String> createComment(@RequestBody CreateCommentRequest createCommentRequest,
-                                                HttpServletRequest httpServletRequest){
+    public ResponseEntity<ApiResponse<Void>> createComment(@RequestBody CreateCommentRequest createCommentRequest,
+                                                            HttpServletRequest httpServletRequest){
         Member loginUser = (Member) httpServletRequest.getSession().getAttribute("loginMember");
         if(loginUser == null){
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("로그인이 필요합니다.");
+            throw new UnauthorizedException("댓글 작성을 위해 로그인이 필요합니다.");
         }
 
         commentService.writeComment(createCommentRequest, loginUser.getId());
-        return ResponseEntity.ok("댓글 등록 완료");
+        return ResponseEntity.ok(ApiResponse.success());
     }
 
     @GetMapping("/{bbsSeq}")
-    public ResponseEntity<List<CommentResponse>> getComment(@PathVariable("bbsSeq") int bbsSeq){
-        return ResponseEntity.ok(commentService.getCommentsByBbsSeq(bbsSeq));
+    public ResponseEntity<ApiResponse<List<CommentResponse>>> getComment(@PathVariable("bbsSeq") int bbsSeq){
+        return ResponseEntity.ok(ApiResponse.success(commentService.getCommentsByBbsSeq(bbsSeq)));
     }
 
 }
