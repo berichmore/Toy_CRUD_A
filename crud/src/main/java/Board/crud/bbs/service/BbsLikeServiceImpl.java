@@ -45,10 +45,28 @@ public class BbsLikeServiceImpl implements BbsLikeService {
     @Override
     public LikeStatusResponse toggleLike(String userId, ToggleLikeRequest toggleLikeRequest) {
 
+
+        // ForUpdate  bbs(부모)로
+        bbsDao.selectBbsBySeqForUpdate(toggleLikeRequest.getBbsSeq());
+
         BbsLikeParam param = new BbsLikeParam(userId, toggleLikeRequest.getBbsSeq());
 
-        System.out.println("현재 실행중인 스레드 이름: " + Thread.currentThread().getName() +
-                ", 요청 회원: " + param.getId());
+        boolean aleadyLiked = bbsLikeDao.bbsLikeExists(param);
+
+        if (aleadyLiked) {
+            bbsLikeDao.bbsLikeDelete(param);
+            bbsDao.decreaseLikeCount(param.getBbsSeq());
+        } else {
+            bbsLikeDao.bbsLikeInsert(param);
+            bbsDao.increaseLikeCount(param.getBbsSeq());
+        }
+        int updateCount = bbsLikeDao.bbsGetLikeCount(param.getBbsSeq());
+        return new LikeStatusResponse(!aleadyLiked, updateCount);
+
+//        BbsLikeParam param = new BbsLikeParam(userId, toggleLikeRequest.getBbsSeq());
+//
+//        System.out.println("현재 실행중인 스레드 이름: " + Thread.currentThread().getName() +
+//                ", 요청 회원: " + param.getId());
 //        // FOR UPDATE 락 -> 좋아요 여부 확인
 //        BbsLike existing = bbsLikeDao.selectForUpdate(param);
 //
@@ -61,27 +79,27 @@ public class BbsLikeServiceImpl implements BbsLikeService {
 //        }
 //        int updatedCount = bbsLikeDao.bbsGetLikeCount(param.getBbsSeq());
 //        return new LikeStatusResponse(existing == null, updatedCount);
+
+
+//        // FOR UPDATE 락없이 좋아요 확인 (정합성 무너뜨리기)
+//        boolean aleadyLiked = bbsLikeDao.bbsLikeExists(param);
 //
-
-        // FOR UPDATE 락없이 좋아요 확인 (정합성 무너뜨리기)
-        boolean aleadyLiked = bbsLikeDao.bbsLikeExists(param);
-
-        if(aleadyLiked){
-            bbsLikeDao.bbsLikeDelete(param);
-            bbsDao.decreaseLikeCount(param.getBbsSeq());
-        } else {
-            // 동시성 이슈를 더 확실하게 보기 위해 짧게 지연시간을 줘보기
-            try{
-                Thread.sleep(10);
-            }catch (InterruptedException e){
-
-            }
-            bbsLikeDao.bbsLikeInsert(param);
-            bbsDao.increaseLikeCount(param.getBbsSeq());
-        }
-
-        int updatedCount = bbsLikeDao.bbsGetLikeCount(param.getBbsSeq());
-        return new LikeStatusResponse(!aleadyLiked, updatedCount);
+//        if(aleadyLiked){
+//            bbsLikeDao.bbsLikeDelete(param);
+//            bbsDao.decreaseLikeCount(param.getBbsSeq());
+//        } else {
+//            // 동시성 이슈를 더 확실하게 보기 위해 짧게 지연시간을 줘보기
+//            try{
+//                Thread.sleep(10);
+//            }catch (InterruptedException e){
+//
+//            }
+//            bbsLikeDao.bbsLikeInsert(param);
+//            bbsDao.increaseLikeCount(param.getBbsSeq());
+//        }
+//
+//        int updatedCount = bbsLikeDao.bbsGetLikeCount(param.getBbsSeq());
+//        return new LikeStatusResponse(!aleadyLiked, updatedCount);
     }
 
 

@@ -48,6 +48,9 @@ public interface BbsDao {
     void decreaseLikeCount(int bbsSeq);
     void updateLikeCount(int bbsSeq);
 
+    // 비관적 락 gaplock
+    Bbs selectBbsBySeqForUpdate(int seq);
+
 
 
 
