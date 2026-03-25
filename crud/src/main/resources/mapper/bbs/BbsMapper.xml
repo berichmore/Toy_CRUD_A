@@ -170,39 +170,13 @@
     where seq = #{bbsSeq}
     </update>
 
+<!--    비관적 락-->
+    <select id="selectBbsBySeqForUpdate" resultType="board.crud.bbs.domain.Bbs">
+        SELECT seq, id, like_count AS likeCount
+        FROM bbs
+        WHERE seq = #{seq}
+        FOR UPDATE
+    </select>
+
 </mapper>
 
-<!--<select id="BbsLikeExists" resultType="boolean">-->
-<!--select count(*) > 0-->
-<!--from bbs_like-->
-<!--where id = #{id} and bbs_seq = #{bbsSeq}-->
-<!--</select>-->
-<!--<insert id="BbsLikeInsert">-->
-<!--insert into bbs_like(id, bbs_seq)-->
-<!--values(#{id}, #{bbsSeq});-->
-<!--</insert>-->
-
-<!--<delete id="BbsLikeDelete">-->
-<!--delete from bbs_like-->
-<!--where id = #{id} and bbs_seq = #{bbsSeq};-->
-<!--</delete>-->
-
-<!--<update id="increaseLikeCount" parameterType="int">-->
-<!--update bbs-->
-<!--set like_count = like_count +1-->
-<!--where seq = #{bbsSeq}-->
-<!--</update>-->
-
-<!--<update id="decreaseLikeCount" parameterType="int">-->
-<!--update bbs-->
-<!--set like_count = like_count -1-->
-<!--where seq = #{bbsSeq}-->
-<!--</update>-->
-
-
-
-
-        <!--        selectBbsById-->
-        <!--        insertBbs-->
-        <!--        updateBbs-->
-        <!--        deleteBbs-->
